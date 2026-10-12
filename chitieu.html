@@ -8,11 +8,34 @@
   </head>
   <body>
     <h1>Chi tiêu</h1>
-    <p>Đây là trang chi tiêu</p>
-    <p>
-      Chi tiêu gần nhất <br />
-      Tổng ngân sách còn lại <br />
-      Chi tiêu theo danh mục : ăn uống, mua sắm, giải trí, đi lại... <br />
-    </p>
+    <form>
+      <div>
+        <label>Nội dung</label>
+        <input type="text" placeholder="Ví dụ: ăn cơm, tiền nhà, xăng xe..." />
+      </div>
+      <div>
+        <label>Số tiền</label>
+        <input type="number" placeholder="Ví dụ: 100000, 200000..." />
+      </div>
+       <div>
+      <p>
+        <label>Ngày:</label>
+        <input type="date" />
+      </p>
+    </div>
+      <button type="submit">Thêm Chi Tiêu</button>
+    </div>
+    <h2>Danh sách giao dịch</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nội dung</th>
+          <th>Số tiền</th>
+          <th>Ngày</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Nội dung ở đây -->
+      </tbody>
   </body>
 </html>
