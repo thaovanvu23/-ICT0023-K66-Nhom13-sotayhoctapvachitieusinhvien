@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15)),
+    url("img/brindex.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+}
+
+.khungForm {
+  width: min(90vw, 430px);
+  padding: 24px;
+}
+
+.formNhapTen {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(6px);
+  padding: 30px 24px;
+}
+
+.nhomNhap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1e2a3a;
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #d7dce5;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 1rem;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+input:focus {
+  border-color: #6aa9ff;
+  box-shadow: 0 0 0 4px rgba(106, 169, 255, 0.15);
+}
+
+button {
+  width: 100%;
+  margin-top: 22px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #4a90e2, #6d5ef7);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 8px 18px rgba(90, 109, 255, 0.25);
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(90, 109, 255, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+}
