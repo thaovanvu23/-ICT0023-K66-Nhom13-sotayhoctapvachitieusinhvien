@@ -4,18 +4,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang đâu tiên</title>
+    <title>Trang đầu tiên</title>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <div>
-      <h2>Mời bạn nhập tên</h2>
-
-      <p>
-        Nhập tên của bạn"
-        <br />
+    <div class="khungForm">
+      <form
+        class="formNhapTen"
+        id="formNhapTen"
+        action="trangchu.html"
+        method="get"
+        onsubmit="
+          window.location.href = 'trangchu.html';
+          return false;
+        "
+      >
+        <div class="nhomNhap">
+          <label for="tenHocSinh">Mời bạn nhập tên</label>
+          <input id="tenHocSinh" type="text" placeholder="Nhập tên của bạn" />
+        </div>
 
         <button type="submit">Tiếp Tục</button>
-      </p>
+      </form>
     </div>
   </body>
 </html>

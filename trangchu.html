@@ -1,21 +1,37 @@
 <!-- Hoàng Làm -->
-
 <!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trang Chủ</title>
+    <link rel="stylesheet" href="trangchu.css" />
   </head>
   <body>
-    <h1>Sổ tay sinh viên</h1>
-    <table>
-      <tr>
-        <th><a href="tongquan.html">Tổng Quan</a></th>
-        <th><a href="chitieu.html">Chi Tiêu</a></th>
-        <th><a href="hoctap.html">Học Tập</a></th>
-        <th><a href="deadline.html">Deadline</a></th>
-      </tr>
-    </table>
+    <main class="trangChuContainer">
+      <header class="trangChuHeader">
+        <p class="trangChuTieuDe">Sổ tay sinh viên</p>
+        <h1>Trang chủ</h1>
+      </header>
+
+      <nav class="menuTrangChu" aria-label="Menu chính">
+        <a href="tongquan.html" class="menuItem">
+          <span class="icon">📊</span>
+          <span class="text">Tổng Quan</span>
+        </a>
+        <a href="chitieu.html" class="menuItem">
+          <span class="icon">💸</span>
+          <span class="text">Chi Tiêu</span>
+        </a>
+        <a href="hoctap.html" class="menuItem">
+          <span class="icon">📚</span>
+          <span class="text">Học Tập</span>
+        </a>
+        <a href="deadline.html" class="menuItem">
+          <span class="icon">⏰</span>
+          <span class="text">Deadline</span>
+        </a>
+      </nav>
+    </main>
   </body>
 </html>
