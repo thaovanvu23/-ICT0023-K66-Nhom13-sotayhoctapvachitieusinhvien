@@ -1,18 +1,67 @@
 <!-- Hoàng Làm -->
 <!doctype html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chi tiêu</title>
+    <link rel="stylesheet" href="chitieu.css" />
   </head>
   <body>
-    <h1>Chi tiêu</h1>
-    <p>Đây là trang chi tiêu</p>
-    <p>
-      Chi tiêu gần nhất <br />
-      Tổng ngân sách còn lại <br />
-      Chi tiêu theo danh mục : ăn uống, mua sắm, giải trí, đi lại... <br />
-    </p>
+    <main class="chiTieuContainer">
+      <header class="chiTieuHeader">
+        <p class="chiTieuLabel">Quản lý chi tiêu</p>
+        <h1>Chi tiêu</h1>
+      </header>
+
+      <section class="chiTieuCard">
+        <form class="formChiTieu">
+          <div class="nhomNhap">
+            <label for="noiDung">Nội dung</label>
+            <input
+              id="noiDung"
+              type="text"
+              placeholder="Ví dụ: ăn cơm, tiền nhà, xăng xe..."
+            />
+          </div>
+
+          <div class="nhomNhap">
+            <label for="soTien">Số tiền</label>
+            <input
+              id="soTien"
+              type="text"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              placeholder="Ví dụ: 100000, 200000..."
+            />
+          </div>
+
+          <div class="nhomNhap">
+            <label for="ngayChiTieu">Ngày</label>
+            <input id="ngayChiTieu" type="date" />
+          </div>
+
+          <button type="submit">Thêm chi tiêu</button>
+        </form>
+      </section>
+
+      <section class="bangChiTieu">
+        <h2>Danh sách giao dịch</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Nội dung</th>
+              <th>Số tiền</th>
+              <th>Ngày</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <!-- Nội dung giao dịch sẽ được thêm vào đây -->
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
   </body>
 </html>

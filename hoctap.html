@@ -1,18 +1,82 @@
-<!-- Thông Làm -->
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Học Tập</title>
-  </head>
-  <body>
-    <h1>Học Tập</h1>
-    <p>Đây là trang học tập</p>
-    <p>
-      phân loại học tập theo môn học <br />
-      phân loại học tập theo thời gian <br />
-      gợi ý học tập theo deadline <br />
-    </p>
-  </body>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học tập</title>
+  <link rel="stylesheet" href="hoctap.css">
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>Học tập</h1>
+      <p class="sub">Theo dõi deadline và giữ nhịp học tập mỗi ngày.</p>
+    </div>
+  </header>
+
+  <main class="layout">
+
+  
+    <section class="card">
+      <h2>Deadline &amp; việc cần làm</h2>
+
+      <p class="suggest" id="suggest" hidden></p>
+
+      <form id="task-form" novalidate>
+        <div class="row">
+          <div class="field">
+            <label for="task-subject">Tên môn học</label>
+            <input type="text" id="task-subject" placeholder="Ví dụ: Lập trình web">
+          </div>
+          <div class="field grow">
+            <label for="task-title">Việc cần làm</label>
+            <input type="text" id="task-title" placeholder="Ví dụ: Nộp bài tập lớn">
+          </div>
+          <div class="field">
+            <label for="task-date">Hạn nộp</label>
+            <input type="date" id="task-date">
+          </div>
+        </div>
+        <p class="error" id="task-error" hidden></p>
+        <button type="submit" class="btn primary">Thêm việc</button>
+      </form>
+
+      <div class="filters">
+        <div class="tabs">
+          <button type="button" class="tab active" data-filter="all">Tất cả</button>
+          <button type="button" class="tab" data-filter="today">Hôm nay</button>
+          <button type="button" class="tab" data-filter="week">7 ngày tới</button>
+          <button type="button" class="tab" data-filter="overdue">Quá hạn</button>
+        </div>
+        <select id="subject-filter" aria-label="Lọc theo môn"></select>
+      </div>
+
+      <ul class="task-list" id="task-list"></ul>
+      <p class="empty" id="task-empty">Chưa có việc nào trong mục này.</p>
+    </section>
+
+    <aside class="card timer-card">
+      <h2>Tập trung học (Pomodoro)</h2>
+
+      <div class="modes">
+        <button class="mode active" data-minutes="25">Học 25'</button>
+        <button class="mode" data-minutes="5">Nghỉ 5'</button>
+        <button class="mode" data-minutes="15">Nghỉ dài 15'</button>
+      </div>
+
+      <div class="clock" id="clock">25:00</div>
+
+      <div class="btn-row center">
+        <button class="btn primary" id="start">Bắt đầu</button>
+        <button class="btn ghost" id="reset-timer">Đặt lại</button>
+      </div>
+
+      <p class="today">Hôm nay đã hoàn thành <strong id="done-count">0</strong> phiên học (<span id="done-minutes">0</span> phút).</p>
+    </aside>
+
+  </main>
+
+  <script src="hoctap.js"></script>
+</body>
 </html>

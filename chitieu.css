@@ -1,0 +1,162 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fff5ea 0%, #ffe2d7 30%, #f3f7ff 100%);
+  font-family: Arial, sans-serif;
+  color: #1f2937;
+}
+
+.chiTieuContainer {
+  width: min(950px, 92vw);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 28px;
+  padding: 36px 28px;
+  box-shadow: 0 20px 40px rgba(184, 120, 72, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+.chiTieuHeader {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.chiTieuLabel {
+  margin: 0 0 10px;
+  color: #d97706;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.chiTieuHeader h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  color: #1f2937;
+}
+
+.chiTieuCard {
+  background: linear-gradient(180deg, #fffdfb 0%, #fff7f1 100%);
+  border: 1px solid rgba(253, 186, 116, 0.4);
+  border-radius: 22px;
+  padding: 24px;
+  margin-bottom: 26px;
+}
+
+.formChiTieu {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.nhomNhap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nhomNhap label {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+.nhomNhap input {
+  width: 100%;
+  border: 1px solid #f0c8a6;
+  border-radius: 12px;
+  padding: 13px 14px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  outline: none;
+  appearance: textfield;
+  -moz-appearance: textfield;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.nhomNhap input:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.12);
+}
+
+.formChiTieu button {
+  grid-column: 1 / -1;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 12px 20px rgba(234, 88, 12, 0.18);
+}
+
+.formChiTieu button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 15px 22px rgba(234, 88, 12, 0.22);
+}
+
+.bangChiTieu {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 18px 20px 8px;
+  border: 1px solid #f3d7bb;
+}
+
+.bangChiTieu h2 {
+  margin: 0 0 18px;
+  font-size: 1.4rem;
+  color: #374151;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+th,
+td {
+  padding: 14px 12px;
+  text-align: left;
+  border-bottom: 1px solid #f3e3d5;
+}
+
+th {
+  background: #fff1e5;
+  color: #7c4a19;
+  font-weight: 700;
+}
+
+tbody tr:nth-child(even) {
+  background: #fffaf6;
+}
+
+tbody tr:hover {
+  background: #fff3ea;
+}
+
+@media (max-width: 640px) {
+  .formChiTieu {
+    grid-template-columns: 1fr;
+  }
+
+  .chiTieuContainer {
+    padding: 24px 18px;
+  }
+}
