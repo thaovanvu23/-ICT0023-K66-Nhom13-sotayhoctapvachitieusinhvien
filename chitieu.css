@@ -110,6 +110,48 @@ body {
   box-shadow: 0 15px 22px rgba(234, 88, 12, 0.22);
 }
 
+.tongKetChiTieu {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 18px;
+  margin: 0 0 24px;
+}
+
+.tongKetItem {
+  background: linear-gradient(135deg, #fff7ed 0%, #fff1e6 100%);
+  border: 1px solid #fed7aa;
+  border-radius: 18px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 110px;
+  justify-content: center;
+}
+
+.labelTongKet {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9a5b1d;
+  font-weight: 700;
+}
+
+.tongKetItem strong {
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  color: #1f2937;
+}
+
+.tongSoDu {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border-color: #86efac;
+  box-shadow: 0 12px 22px rgba(34, 197, 94, 0.12);
+}
+
+.tongSoDu strong {
+  color: #166534;
+}
+
 .bangChiTieu {
   background: #ffffff;
   border-radius: 20px;
@@ -149,6 +191,31 @@ tbody tr:nth-child(even) {
 
 tbody tr:hover {
   background: #fff3ea;
+}
+
+.emptyState {
+  text-align: center;
+  color: #7c4a19;
+  font-style: italic;
+  padding: 20px 12px;
+}
+
+.xoaBtn {
+  border: 1px solid #fecaca;
+  background: #fee2e2;
+  color: #991b1b;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.xoaBtn:hover {
+  background: #fecaca;
+  transform: translateY(-1px);
 }
 
 @media (max-width: 640px) {

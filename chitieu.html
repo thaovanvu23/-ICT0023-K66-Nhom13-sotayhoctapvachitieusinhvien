@@ -14,14 +14,26 @@
         <h1>Chi tiêu</h1>
       </header>
 
+      <section class="tongKetChiTieu">
+        <div class="tongKetItem tongSoDu">
+          <span class="labelTongKet">Tổng số dư</span>
+          <strong id="tongSoDu">0₫</strong>
+        </div>
+        <div class="tongKetItem">
+          <span class="labelTongKet">Tổng chi tiêu</span>
+          <strong id="tongChiTieu">0₫</strong>
+        </div>
+      </section>
+
       <section class="chiTieuCard">
-        <form class="formChiTieu">
+        <form class="formChiTieu" id="formChiTieu">
           <div class="nhomNhap">
             <label for="noiDung">Nội dung</label>
             <input
               id="noiDung"
               type="text"
               placeholder="Ví dụ: ăn cơm, tiền nhà, xăng xe..."
+              required
             />
           </div>
 
@@ -33,12 +45,13 @@
               inputmode="numeric"
               pattern="[0-9]*"
               placeholder="Ví dụ: 100000, 200000..."
+              required
             />
           </div>
 
           <div class="nhomNhap">
             <label for="ngayChiTieu">Ngày</label>
-            <input id="ngayChiTieu" type="date" />
+            <input id="ngayChiTieu" type="date" required />
           </div>
 
           <button type="submit">Thêm chi tiêu</button>
@@ -53,15 +66,13 @@
               <th>Nội dung</th>
               <th>Số tiền</th>
               <th>Ngày</th>
+              <th>Hành động</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <!-- Nội dung giao dịch sẽ được thêm vào đây -->
-            </tr>
-          </tbody>
+          <tbody id="danhSachChiTieu"></tbody>
         </table>
       </section>
     </main>
+    <script src="chitieu.js"></script>
   </body>
 </html>
