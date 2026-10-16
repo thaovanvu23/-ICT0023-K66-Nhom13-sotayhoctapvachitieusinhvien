@@ -7,6 +7,7 @@ var DANH_MUC_THU = ["Gia đình gửi", "Làm thêm", "Học bổng", "Khác"];
 
 var formChiTieu = document.getElementById("formChiTieu");
 var khungDanhSach = document.getElementById("danhSachChiTieu");
+var oNhapSoTien = formChiTieu.elements["amount"];
 
 function dinhDangTien(so) {
   return so.toLocaleString("vi-VN") + " ₫";
@@ -130,6 +131,24 @@ window.getChiTieuSummary = function () {
 };
 
 formChiTieu.elements["type"].addEventListener("change", capNhatDanhMuc);
+
+oNhapSoTien.addEventListener("input", function () {
+  var viTriConTro = oNhapSoTien.selectionStart;
+  var soChuSoTruocConTro = oNhapSoTien.value
+    .slice(0, viTriConTro)
+    .replace(/\D/g, "").length;
+  var chuoiSo = oNhapSoTien.value.replace(/\D/g, "");
+  var daDinhDang = chuoiSo.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+  oNhapSoTien.value = daDinhDang;
+  var viTriMoi = 0;
+  var soChuSoDaGap = 0;
+  while (viTriMoi < daDinhDang.length && soChuSoDaGap < soChuSoTruocConTro) {
+    if (/\d/.test(daDinhDang[viTriMoi])) soChuSoDaGap += 1;
+    viTriMoi += 1;
+  }
+  oNhapSoTien.setSelectionRange(viTriMoi, viTriMoi);
+});
 
 formChiTieu.addEventListener("submit", function (e) {
   e.preventDefault();
