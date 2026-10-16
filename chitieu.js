@@ -67,9 +67,18 @@ function renderChiTieu() {
 }
 
 window.getChiTieuSummary = function () {
+  const theoDanhMuc = chiTieus.reduce((summary, chiTieu) => {
+    const category = chiTieu.category || "Khác";
+    if (!summary[category]) summary[category] = { count: 0, total: 0 };
+    summary[category].count += 1;
+    summary[category].total += chiTieu.amount;
+    return summary;
+  }, {});
+
   return {
     total: chiTieus.reduce((s, c) => s + c.amount, 0),
     recent: chiTieus.slice(0, 5),
+    byCategory: theoDanhMuc,
   };
 };
 

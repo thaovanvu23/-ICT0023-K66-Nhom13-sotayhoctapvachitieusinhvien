@@ -17,6 +17,14 @@ Phân công
     <div class="khungChung">
       <header class="tieuDeApp">
         <h1>Quản Lý Chi Tiêu và Học Tập</h1>
+        <button
+          type="button"
+          class="nutChuyenCheDo"
+          id="nutChuyenCheDo"
+          aria-pressed="false"
+        >
+          🌙 Chế độ tối
+        </button>
       </header>
 
       <nav class="thanhTab">
@@ -67,6 +75,27 @@ Phân công
             <ul class="danhSachGanDay" id="hoatDongGanDay">
               <li>Chưa có hoạt động gần đây.</li>
             </ul>
+          </div>
+          <div class="khung">
+            <h2>Chi tiêu theo danh mục</h2>
+            <div class="bangTongQuanCuon">
+              <table class="bangTongQuan">
+                <thead>
+                  <tr>
+                    <th scope="col">Danh mục</th>
+                    <th scope="col">Số khoản</th>
+                    <th scope="col">Tổng tiền</th>
+                  </tr>
+                </thead>
+                <tbody id="chiTieuTheoDanhMuc">
+                  <tr>
+                    <td colspan="3" class="bangTrong">
+                      Chưa có khoản chi tiêu nào.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
 

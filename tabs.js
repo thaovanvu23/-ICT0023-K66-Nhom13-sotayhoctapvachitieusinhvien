@@ -11,6 +11,22 @@ document.querySelectorAll(".nutTab").forEach((btn) => {
   });
 });
 
+const CHE_DO_TOI_KEY = "che_do_toi";
+const nutChuyenCheDo = document.getElementById("nutChuyenCheDo");
+
+function capNhatCheDoToi(cheDoToi) {
+  document.body.classList.toggle("dark-mode", cheDoToi);
+  nutChuyenCheDo.setAttribute("aria-pressed", String(cheDoToi));
+  nutChuyenCheDo.textContent = cheDoToi ? "☀️ Chế độ sáng" : "🌙 Chế độ tối";
+}
+
+capNhatCheDoToi(localStorage.getItem(CHE_DO_TOI_KEY) === "true");
+nutChuyenCheDo.addEventListener("click", () => {
+  const cheDoToi = !document.body.classList.contains("dark-mode");
+  localStorage.setItem(CHE_DO_TOI_KEY, String(cheDoToi));
+  capNhatCheDoToi(cheDoToi);
+});
+
 // ===== Tab Tổng quan =====
 const SO_DU_BAN_DAU_KEY = "so_du_ban_dau";
 
@@ -39,6 +55,22 @@ function renderTongQuan() {
         )
         .join("")
     : "<li>Chưa có hoạt động gần đây.</li>";
+
+  const chiTieuTheoDanhMuc = document.getElementById("chiTieuTheoDanhMuc");
+  const danhMucs = Object.entries(ct.byCategory || {});
+  chiTieuTheoDanhMuc.innerHTML = danhMucs.length
+    ? danhMucs
+        .sort((a, b) => b[1].total - a[1].total)
+        .map(
+          ([category, summary]) => `
+            <tr>
+              <td>${category}</td>
+              <td>${summary.count}</td>
+              <td>${summary.total.toLocaleString("vi-VN")} ₫</td>
+            </tr>`,
+        )
+        .join("")
+    : '<tr><td colspan="3" class="bangTrong">Chưa có khoản chi tiêu nào.</td></tr>';
 }
 
 document.getElementById("formSoDu").addEventListener("submit", (e) => {
