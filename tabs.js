@@ -62,6 +62,46 @@ function renderTongQuan() {
   document.getElementById("tienDoHocTapTongQuan").textContent =
     ht.done + "/" + ht.total;
 
+  const deadlineGanNhat = document.getElementById("deadlineGanNhat");
+  deadlineGanNhat.replaceChildren();
+  if (!ht.nearest) {
+    const trong = document.createElement("li");
+    trong.textContent = "Chưa có deadline sắp tới.";
+    deadlineGanNhat.append(trong);
+  } else {
+    const muc = document.createElement("li");
+    muc.className = "mucDeadlineGanNhat";
+
+    const thongTin = document.createElement("span");
+    thongTin.className = "thongTinDeadline";
+    const tieuDe = document.createElement("strong");
+    tieuDe.textContent = ht.nearest.subject;
+    const noiDung = document.createElement("span");
+    noiDung.textContent = ht.nearest.task;
+    thongTin.append(tieuDe, noiDung);
+
+    const ngayHetHan = new Date(`${ht.nearest.deadline}T00:00:00`);
+    const homNay = new Date();
+    homNay.setHours(0, 0, 0, 0);
+    const soNgay = Math.round((ngayHetHan - homNay) / 86400000);
+    const trangThai =
+      soNgay < 0
+        ? `Quá hạn ${Math.abs(soNgay)} ngày`
+        : soNgay === 0
+          ? "Hạn hôm nay"
+          : `Còn ${soNgay} ngày`;
+    const han = document.createElement("span");
+    han.className = `hanDeadline${soNgay < 0 ? " quaHan" : ""}`;
+    const ngay = document.createElement("strong");
+    ngay.textContent = ht.nearest.deadline.split("-").reverse().join("/");
+    const nhanTrangThai = document.createElement("small");
+    nhanTrangThai.textContent = trangThai;
+    han.append(ngay, nhanTrangThai);
+
+    muc.append(thongTin, han);
+    deadlineGanNhat.append(muc);
+  }
+
   const recent = document.getElementById("hoatDongGanDay");
   recent.innerHTML = ct.recent.length
     ? ct.recent

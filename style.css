@@ -313,6 +313,40 @@ button.dangChon {
   text-align: right;
 }
 
+.danhSachGanDay .mucDeadlineGanNhat {
+  align-items: center;
+  gap: 16px;
+}
+
+.thongTinDeadline,
+.hanDeadline {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.thongTinDeadline {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.hanDeadline {
+  flex: 0 0 auto;
+  align-items: flex-end;
+  color: var(--accent-color);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.hanDeadline small {
+  color: var(--text-muted);
+}
+
+.hanDeadline.quaHan,
+.hanDeadline.quaHan small {
+  color: #d6452f;
+}
+
 /* Form nhập */
 .formNhapLieu {
   display: grid;
