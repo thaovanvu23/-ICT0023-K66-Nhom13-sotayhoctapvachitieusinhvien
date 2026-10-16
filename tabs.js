@@ -29,8 +29,6 @@ nutChuyenCheDo.addEventListener("click", () => {
 });
 
 // ===== Tab Tổng quan =====
-const SO_DU_BAN_DAU_KEY = "so_du_ban_dau";
-
 function vuaKichThuocSoDu() {
   const soDu = document.getElementById("soDuHienTai");
   soDu.style.fontSize = "30px";
@@ -55,9 +53,8 @@ function renderTongQuan() {
   document.getElementById("tongChiTieu").textContent =
     ct.total.toLocaleString("vi-VN") + " ₫";
   const conLai = Number(ct.remaining ?? Number(ct.income || 0) - ct.total);
-  const soDuBanDau = Number(localStorage.getItem(SO_DU_BAN_DAU_KEY) || 0);
   document.getElementById("soDuHienTai").textContent =
-    (soDuBanDau + conLai).toLocaleString("vi-VN") + " ₫";
+    conLai.toLocaleString("vi-VN") + " ₫";
   vuaKichThuocSoDu();
   document.getElementById("tienDoHocTapTongQuan").textContent =
     ht.done + "/" + ht.total;
@@ -128,13 +125,3 @@ function renderTongQuan() {
         .join("")
     : '<tr><td colspan="3" class="bangTrong">Chưa có khoản chi tiêu nào.</td></tr>';
 }
-
-document.getElementById("formSoDu").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const soDuBanDau = Number(e.target.soDuBanDau.value);
-  if (!Number.isFinite(soDuBanDau) || soDuBanDau < 0) return;
-
-  localStorage.setItem(SO_DU_BAN_DAU_KEY, String(soDuBanDau));
-  e.target.reset();
-  renderTongQuan();
-});
