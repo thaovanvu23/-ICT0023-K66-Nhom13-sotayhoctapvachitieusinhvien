@@ -27,10 +27,34 @@ Phân công
 
       <main>
         <section id="tongQuan" class="khungTab dangChon">
-          <div class="cacThe">
-            <div class="the">
+          <div class="cacTheTongQuan">
+            <div class="theTongQuan theSoDu">
+              <span class="theNhan">Số dư hiện tại</span>
+              <span class="theGiaTri" id="soDuHienTai">0 ₫</span>
+              <span class="theGhiChu">Tính từ số dư ban đầu trừ chi tiêu</span>
+              <form id="formSoDu" class="formSoDuTongQuan">
+                <input
+                  type="number"
+                  name="soDuBanDau"
+                  min="0"
+                  step="1000"
+                  placeholder="Số dư ban đầu (VNĐ)"
+                  aria-label="Số dư ban đầu (VNĐ)"
+                  required
+                />
+                <button
+                  type="submit"
+                  aria-label="Cập nhật số dư"
+                  title="Cập nhật số dư"
+                >
+                  Lưu
+                </button>
+              </form>
+            </div>
+            <div class="theTongQuan theTongChiTieu">
               <span class="theNhan">Tổng chi tiêu</span>
               <span class="theGiaTri" id="tongChiTieu">0 ₫</span>
+              <span class="theGhiChu">Tổng các khoản chi đã ghi nhận</span>
             </div>
             <div class="the">
               <span class="theNhan">Tổng thu nhập</span>
@@ -43,6 +67,7 @@ Phân công
             <div class="the">
               <span class="theNhan">Tiến độ học tập</span>
               <span class="theGiaTri" id="tienDoHocTapTongQuan">0/0</span>
+              <span class="theGhiChu">Bài tập và công việc hoàn thành</span>
             </div>
           </div>
           <div class="khung">

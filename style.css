@@ -67,35 +67,89 @@ button.dangChon {
   display: block;
 }
 
-/* Hai ô số liệu ở Tổng quan */
-.cacThe {
+.cacTheTongQuan {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
 }
 
-.the {
+.theTongQuan {
   display: flex;
+  min-height: 150px;
   flex-direction: column;
-  gap: 4px;
-  padding: 14px;
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  justify-content: center;
+  gap: 6px;
+  padding: 22px 24px;
+  border: 1px solid var(--card-border);
+  border-left: 5px solid var(--the-accent);
+  border-radius: 16px;
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
 }
 
-.theNhan {
-  font-size: 0.9rem;
-  color: #718096;
+.theTongChiTieu {
+  --the-accent: #d97706;
 }
 
-.theGiaTri {
-  font-size: 1.2rem;
+.theTienDoHocTap {
+  --the-accent: #16806a;
+}
+
+.theSoDu {
+  --the-accent: #2878a5;
+}
+
+.theTongQuan .theNhan {
+  color: var(--text-muted);
+  font-size: 14px;
   font-weight: 700;
 }
 
-/* Thẻ trắng, tiêu đề có thanh tím bên trái */
+.theTongQuan .theGiaTri {
+  color: var(--the-accent);
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.theGhiChu {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.formSoDuTongQuan {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.formSoDuTongQuan input {
+  width: 0;
+  min-width: 0;
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--text-main);
+  font: inherit;
+  font-size: 12px;
+}
+
+.formSoDuTongQuan button {
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--the-accent);
+  color: white;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .khung {
   margin-bottom: 16px;
   padding: 18px;
