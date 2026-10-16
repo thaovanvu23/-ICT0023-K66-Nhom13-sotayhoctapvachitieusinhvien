@@ -1,217 +1,183 @@
+
+:root {
+    --primary-color: #2563eb; /* Xanh dương chủ đạo */
+    --primary-hover: #1d4ed8;
+    --bg-color: #f8fafc;     /* Nền xám sáng nhẹ nhàng */
+    --card-bg: #ffffff;      /* Nền thẻ trắng */
+    --text-color: #1e293b;   /* Màu chữ chính */
+    --border-color: #e2e8f0; /* Màu viền */
+    --success-color: #10b981;/* Màu xanh thành công */
+}
+
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  min-height: 100vh;
-  padding: 24px 16px;
-  color: #222;
-  background: #fff;
-  font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
 }
 
+
 .khungChung {
-  max-width: 860px;
-  margin: 0 auto;
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .tieuDeApp {
-  margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 25px;
 }
 
 .tieuDeApp h1 {
-  font-size: 1.6rem;
-  font-weight: 600;
+    color: var(--primary-color);
+    font-size: 28px;
+    font-weight: 700;
 }
 
 .thanhTab {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid #bbb;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 15px;
 }
 
 .nutTab {
-  padding: 10px 14px;
-  border: 1px solid #bbb;
-  border-bottom: 0;
-  background: #fff;
-  color: #222;
-  font-size: 1rem;
-  cursor: pointer;
+    background-color: #e2e8f0;
+    border: none;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #475569;
+}
+
+.nutTab:hover {
+    background-color: #cbd5e1;
 }
 
 .nutTab.dangChon {
-  background: #eee;
-}
-
-.khungTab {
-  display: none;
-}
-
-.khungTab.dangChon {
-  display: block;
-}
-
-.cacThe {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.the,
-.khung {
-  padding: 16px;
-  border: 1px solid #bbb;
-  background: #fff;
-}
-
-.the {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.theNhan,
-.theMoTa,
-.mucChiTiet {
-  color: #666;
-  font-size: 0.9rem;
-}
-
-.theGiaTri {
-  font-size: 1.4rem;
-  font-weight: 600;
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .khung {
-  margin-bottom: 16px;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
 }
 
 .khung h2 {
-  margin-bottom: 12px;
-  font-size: 1.1rem;
-  font-weight: 600;
+    font-size: 18px;
+    color: #334155;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--primary-color);
+    padding-left: 10px;
 }
 
+/* --- 5. BIỂU MẪU (FORM NHẬP LIỆU) --- */
+.formNhapLieu {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.formNhapLieu input, 
+.formNhapLieu select {
+    flex: 1;
+    min-width: 180px;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.formNhapLieu input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.nutThem {
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.nutThem:hover {
+    background-color: #059669;
+}
+
+/* --- 6. DANH SÁCH VÀ BẢNG HIỂN THỊ --- */
 .khungTieuDe {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.khungTieuDe h2 {
-  margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
 }
 
 .huyHieuTong {
-  font-size: 0.9rem;
+    background-color: #dbeafe;
+    color: var(--primary-color);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
 }
 
-.formNhapLieu {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 8px;
+.danhSach {
+    list-style: none;
 }
 
-.formNhapLieu input,
-.formNhapLieu select,
-.nutThem {
-  min-width: 0;
-  padding: 10px;
-  border: 1px solid #999;
-  border-radius: 0;
-  background: #fff;
-  color: #222;
-  font: inherit;
+.danhSach li {
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s;
 }
 
-.nutThem {
-  cursor: pointer;
+.danhSach li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
-.nutThem:hover,
-.nutTab:hover {
-  background: #eee;
-}
-
-.danhSach,
-.danhSachGanDay {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  list-style: none;
-}
-
-.muc {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px;
-  border: 1px solid #ddd;
-}
-
-.muc.hoanThanh {
-  color: #777;
-}
-
-.muc.hoanThanh .mucTen {
-  text-decoration: line-through;
-}
-
-.mucThongTin {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.mucTen {
-  font-weight: 600;
-}
-
-.mucSoTien {
-  margin-right: 8px;
-  font-weight: 600;
-}
-
-.nutXoa {
-  width: 28px;
-  height: 28px;
-  border: 1px solid #999;
-  background: #fff;
-  color: #222;
-  cursor: pointer;
-}
-
-.trong {
-  padding: 12px 0;
-  color: #666;
-}
-
-.danhSachGanDay li {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid #ddd;
-}
-
-@media (max-width: 560px) {
-  .thanhTab {
-    gap: 0;
-  }
-
-  .nutTab {
-    flex: 1;
-    padding: 10px 6px;
-  }
-
-  .formNhapLieu {
-    grid-template-columns: 1fr;
-  }
+/* --- 7. RESPONSIVE CHO ĐIỆN THOẠI --- */
+@media (max-width: 768px) {
+    .formNhapLieu {
+        flex-direction: column;
+    }
+    .nutThem {
+        width: 100%;
+    }
+    .thanhTab {
+        flex-direction: column;
+    }
 }
