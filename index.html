@@ -27,14 +27,39 @@ Phân công
 
       <main>
         <section id="tongQuan" class="khungTab dangChon">
-          <div class="cacThe">
-            <div class="the">
+          <div class="cacTheTongQuan">
+            <div class="theTongQuan theSoDu">
+              <span class="theNhan">Số dư hiện tại</span>
+              <span class="theGiaTri" id="soDuHienTai">0 ₫</span>
+              <span class="theGhiChu">Tính từ số dư ban đầu trừ chi tiêu</span>
+              <form id="formSoDu" class="formSoDuTongQuan">
+                <input
+                  type="number"
+                  name="soDuBanDau"
+                  min="0"
+                  step="1000"
+                  placeholder="Số dư ban đầu (VNĐ)"
+                  aria-label="Số dư ban đầu (VNĐ)"
+                  required
+                />
+                <button
+                  type="submit"
+                  aria-label="Cập nhật số dư"
+                  title="Cập nhật số dư"
+                >
+                  Lưu
+                </button>
+              </form>
+            </div>
+            <div class="theTongQuan theTongChiTieu">
               <span class="theNhan">Tổng chi tiêu</span>
               <span class="theGiaTri" id="tongChiTieu">0 ₫</span>
+              <span class="theGhiChu">Tổng các khoản chi đã ghi nhận</span>
             </div>
-            <div class="the">
+            <div class="theTongQuan theTienDoHocTap">
               <span class="theNhan">Tiến độ học tập</span>
               <span class="theGiaTri" id="tienDoHocTapTongQuan">0/0</span>
+              <span class="theGhiChu">Bài tập và công việc hoàn thành</span>
             </div>
           </div>
           <div class="khung">
@@ -117,28 +142,52 @@ Phân công
 </html>
 <!-- PHẦN GIẢI TRÍ & THƯ GIÃN -->
 <div class="khung giaiTriBox">
-    <h2>🎮 Góc Giải Trí & Thư Giãn Sinh Viên</h2>
-    
-    <!-- Tab chọn trò chơi hoặc âm nhạc -->
-    <div class="thanhTabGiaiTri">
-        <button class="nutGiaiTri dangChon" onclick="chuyenTabGiaiTri('quiz')">🧠 Đố Vui Lập Trình</button>
-        <button class="nutGiaiTri" onclick="chuyenTabGiaiTri('lofi')">🎧 Nhạc Lofi Chill</button>
-    </div>
+  <h2>🎮 Góc Giải Trí & Thư Giãn Sinh Viên</h2>
 
-    <!-- Nội dung Đố Vui -->
-    <div id="noiDungQuiz" class="noiDungGiaiTri">
-        <p id="cauHoiQuiz" style="font-weight: 600; margin-bottom: 12px;">Câu hỏi: Ngôn ngữ nào dùng để tạo cấu trúc trang web?</p>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <button class="nutChonDapAn" onclick="chonDapAn(false)">A. Python</button>
-            <button class="nutChonDapAn" onclick="chonDapAn(true)">B. HTML</button>
-            <button class="nutChonDapAn" onclick="chonDapAn(false)">C. C++</button>
-        </div>
-        <p id="ketQuaQuiz" style="margin-top: 10px; font-weight: bold;"></p>
-    </div>
+  <!-- Tab chọn trò chơi hoặc âm nhạc -->
+  <div class="thanhTabGiaiTri">
+    <button class="nutGiaiTri dangChon" onclick="chuyenTabGiaiTri('quiz')">
+      🧠 Đố Vui Lập Trình
+    </button>
+    <button class="nutGiaiTri" onclick="chuyenTabGiaiTri('lofi')">
+      🎧 Nhạc Lofi Chill
+    </button>
+  </div>
 
-    <!-- Nội dung Nhạc Lofi -->
-    <div id="noiDungLofi" class="noiDungGiaiTri" style="display: none; text-align: center;">
-        <p style="margin-bottom: 10px;">Bật nhạc Lofi học tập không quảng cáo:</p>
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWQRwMI0CKPn?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+  <!-- Nội dung Đố Vui -->
+  <div id="noiDungQuiz" class="noiDungGiaiTri">
+    <p id="cauHoiQuiz" style="font-weight: 600; margin-bottom: 12px">
+      Câu hỏi: Ngôn ngữ nào dùng để tạo cấu trúc trang web?
+    </p>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap">
+      <button class="nutChonDapAn" onclick="chonDapAn(false)">A. Python</button>
+      <button class="nutChonDapAn" onclick="chonDapAn(true)">B. HTML</button>
+      <button class="nutChonDapAn" onclick="chonDapAn(false)">C. C++</button>
     </div>
+    <p id="ketQuaQuiz" style="margin-top: 10px; font-weight: bold"></p>
+  </div>
+
+  <!-- Nội dung Nhạc Lofi -->
+  <div
+    id="noiDungLofi"
+    class="noiDungGiaiTri"
+    style="display: none; text-align: center"
+  >
+    <p style="margin-bottom: 10px">Bật nhạc Lofi học tập không quảng cáo:</p>
+    <iframe
+      style="border-radius: 12px"
+      src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWQRwMI0CKPn?utm_source=generator"
+      width="100%"
+      height="80"
+      frameborder="0"
+      allowfullscreen=""
+      allow="
+        autoplay;
+        clipboard-write;
+        encrypted-media;
+        fullscreen;
+        picture-in-picture;
+      "
+    ></iframe>
+  </div>
 </div>

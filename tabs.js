@@ -12,6 +12,8 @@ document.querySelectorAll(".nutTab").forEach((btn) => {
 });
 
 // ===== Tab Tổng quan =====
+const SO_DU_BAN_DAU_KEY = "so_du_ban_dau";
+
 function renderTongQuan() {
   const ct = window.getChiTieuSummary
     ? window.getChiTieuSummary()
@@ -22,6 +24,9 @@ function renderTongQuan() {
 
   document.getElementById("tongChiTieu").textContent =
     ct.total.toLocaleString("vi-VN") + " ₫";
+  const soDuBanDau = Number(localStorage.getItem(SO_DU_BAN_DAU_KEY) || 0);
+  document.getElementById("soDuHienTai").textContent =
+    (soDuBanDau - ct.total).toLocaleString("vi-VN") + " ₫";
   document.getElementById("tienDoHocTapTongQuan").textContent =
     ht.done + "/" + ht.total;
 
@@ -35,3 +40,13 @@ function renderTongQuan() {
         .join("")
     : "<li>Chưa có hoạt động gần đây.</li>";
 }
+
+document.getElementById("formSoDu").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const soDuBanDau = Number(e.target.soDuBanDau.value);
+  if (!Number.isFinite(soDuBanDau) || soDuBanDau < 0) return;
+
+  localStorage.setItem(SO_DU_BAN_DAU_KEY, String(soDuBanDau));
+  e.target.reset();
+  renderTongQuan();
+});
