@@ -1,292 +1,322 @@
 /* --- 1. CẤU HÌNH MÀU SẮC (CHẾ ĐỘ SÁNG MẶC ĐỊNH & TỐI) --- */
 :root {
-    --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    --card-bg: rgba(255, 255, 255, 0.85);
-    --card-border: rgba(255, 255, 255, 0.6);
-    --text-main: #2d3748;
-    --text-muted: #718096;
-    --accent-color: #5a67d8;
-    --accent-hover: #434190;
-    --success-color: #38a169;
-    --shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-border: rgba(255, 255, 255, 0.6);
+  --text-main: #2d3748;
+  --text-muted: #718096;
+  --accent-color: #5a67d8;
+  --accent-hover: #434190;
+  --success-color: #38a169;
+  --shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
 }
 
 /* Chế độ tối (Dark Mode) khi được kích hoạt */
 body.dark-mode {
-    --bg-gradient: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-    --card-bg: rgba(45, 55, 72, 0.85);
-    --card-border: rgba(255, 255, 255, 0.1);
-    --text-main: #f7fafc;
-    --text-muted: #a0aec0;
-    --accent-color: #7f9cf5;
-    --accent-hover: #667eea;
-    --success-color: #48bb78;
-    --shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  --bg-gradient: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  --card-bg: rgba(45, 55, 72, 0.85);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --text-main: #f7fafc;
+  --text-muted: #a0aec0;
+  --accent-color: #7f9cf5;
+  --accent-hover: #667eea;
+  --success-color: #48bb78;
+  --shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border 0.3s ease;
 }
 
 body {
-    background: var(--bg-gradient);
-    color: var(--text-main);
-    line-height: 1.6;
-    padding: 40px 20px;
-    min-height: 100vh;
-    background-attachment: fixed;
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  line-height: 1.6;
+  padding: 40px 20px;
+  min-height: 100vh;
+  background-attachment: fixed;
 }
 
 /* --- 2. KHUNG CHÍNH (CONTAINER) --- */
 .khungChung {
-    max-width: 950px;
-    margin: 0 auto;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    padding: 40px;
-    border-radius: 24px;
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    position: relative;
+  max-width: 950px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  position: relative;
 }
 
 /* Nút chuyển đổi Sáng/Tối */
 .nutChuyenCheDo {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    background: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .nutChuyenCheDo:hover {
-    background: var(--accent-hover);
-    transform: translateY(-2px);
+  background: var(--accent-hover);
+  transform: translateY(-2px);
 }
 
 .tieuDeApp {
-    text-align: center;
-    margin-bottom: 35px;
+  text-align: center;
+  margin-bottom: 35px;
 }
 
 .tieuDeApp h1 {
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    background: linear-gradient(to right, var(--accent-color), #d53f8c);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(to right, var(--accent-color), #d53f8c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
 }
 
 /* --- 3. THANH ĐIỀU HƯỚNG TAB --- */
 .thanhTab {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 35px;
-    border-bottom: 1px solid var(--card-border);
-    padding-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 0 -40px 35px;
+  padding: 14px 40px 20px;
+  border-bottom: 1px solid var(--card-border);
+  background: var(--card-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
 }
 
 .nutTab {
-    background-color: rgba(0, 0, 0, 0.04);
-    border: 1px solid var(--card-border);
-    padding: 12px 28px;
-    font-size: 15px;
-    font-weight: 600;
-    border-radius: 14px;
-    cursor: pointer;
-    color: var(--text-muted);
+  background-color: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--card-border);
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 14px;
+  cursor: pointer;
+  color: var(--text-muted);
 }
 
 body.dark-mode .nutTab {
-    background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .nutTab:hover {
-    background-color: var(--accent-color);
-    color: white;
-    transform: translateY(-2px);
+  background-color: var(--accent-color);
+  color: white;
+  transform: translateY(-2px);
 }
 
 .nutTab.dangChon {
-    background: var(--accent-color);
-    color: white;
-    box-shadow: 0 6px 20px rgba(90, 103, 216, 0.3);
+  background: var(--accent-color);
+  color: white;
+  box-shadow: 0 6px 20px rgba(90, 103, 216, 0.3);
 }
 
 /* --- 4. CÁC KHUNG CHỨC NĂNG --- */
+.khungTab {
+  display: none;
+}
+
+.khungTab.dangChon {
+  display: block;
+}
+
 .khung {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 18px;
-    padding: 28px;
-    margin-bottom: 28px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 28px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
 }
 
 .khung h2 {
-    font-size: 18px;
-    color: var(--text-main);
-    margin-bottom: 20px;
-    border-left: 4px solid var(--accent-color);
-    padding-left: 12px;
-    font-weight: 700;
+  font-size: 18px;
+  color: var(--text-main);
+  margin-bottom: 20px;
+  border-left: 4px solid var(--accent-color);
+  padding-left: 12px;
+  font-weight: 700;
 }
 
 /* --- 5. BIỂU MẪU NHẬP LIỆU (FORM) --- */
 .formNhapLieu {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
-.formNhapLieu input, 
+.formNhapLieu input,
 .formNhapLieu select {
-    flex: 1;
-    min-width: 180px;
-    padding: 14px 18px;
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    font-size: 14px;
-    outline: none;
-    background-color: rgba(255, 255, 255, 0.5);
-    color: var(--text-main);
+  flex: 1;
+  min-width: 180px;
+  padding: 14px 18px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  font-size: 14px;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: var(--text-main);
 }
 
 body.dark-mode .formNhapLieu input,
 body.dark-mode .formNhapLieu select {
-    background-color: rgba(15, 23, 42, 0.6);
+  background-color: rgba(15, 23, 42, 0.6);
 }
 
 .formNhapLieu input:focus,
 .formNhapLieu select:focus {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 4px rgba(90, 103, 216, 0.15);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 4px rgba(90, 103, 216, 0.15);
 }
 
 .nutThem {
-    background: linear-gradient(135deg, var(--success-color), #2f855a);
-    color: white;
-    border: none;
-    padding: 14px 28px;
-    font-weight: 700;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(56, 161, 105, 0.3);
+  background: linear-gradient(135deg, var(--success-color), #2f855a);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(56, 161, 105, 0.3);
 }
 
 .nutThem:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(56, 161, 105, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(56, 161, 105, 0.4);
 }
 
 /* --- 6. DANH SÁCH & BẢNG HIỂN THỊ --- */
 .khungTieuDe {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
 }
 
 .huyHieuTong {
-    background-color: rgba(90, 103, 216, 0.1);
-    color: var(--accent-color);
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 700;
+  background-color: rgba(90, 103, 216, 0.1);
+  color: var(--accent-color);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .danhSach {
-    list-style: none;
+  list-style: none;
 }
 
 .danhSach li {
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid var(--card-border);
-    padding: 16px 20px;
-    border-radius: 12px;
-    margin-bottom: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--card-border);
+  padding: 16px 20px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 body.dark-mode .danhSach li {
-    background: rgba(30, 41, 59, 0.5);
+  background: rgba(30, 41, 59, 0.5);
 }
 
 .danhSach li:hover {
-    border-color: var(--accent-color);
-    transform: translateX(5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border-color: var(--accent-color);
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 /* --- 7. TƯƠNG THÍCH ĐIỆN THOẠI (RESPONSIVE) --- */
 @media (max-width: 768px) {
-    .formNhapLieu {
-        flex-direction: column;
-    }
-    .nutThem {
-        width: 100%;
-    }
-    .thanhTab {
-        flex-direction: column;
-    }
-    body {
-        padding: 15px;
-    }
-    .khungChung {
-        padding: 20px;
-    }
+  .formNhapLieu {
+    flex-direction: column;
+  }
+  .nutThem {
+    width: 100%;
+  }
+  .thanhTab {
+    gap: 8px;
+    margin-right: -20px;
+    margin-left: -20px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  .nutTab {
+    flex: 1;
+    padding: 12px 8px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  body {
+    padding: 15px;
+  }
+  .khungChung {
+    padding: 20px;
+  }
 }
 /* --- GÓC GIẢI TRÍ --- */
 .thanhTabGiaiTri {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
 .nutGiaiTri {
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--card-border);
-    padding: 8px 16px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--text-muted);
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--card-border);
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-muted);
 }
 
 .nutGiaiTri.dangChon {
-    background: var(--accent-color);
-    color: white;
+  background: var(--accent-color);
+  color: white;
 }
 
 .nutChonDapAn {
-    background: rgba(90, 103, 216, 0.1);
-    border: 1px solid var(--accent-color);
-    color: var(--accent-color);
-    padding: 8px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
+  background: rgba(90, 103, 216, 0.1);
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .nutChonDapAn:hover {
-    background: var(--accent-color);
-    color: white;
+  background: var(--accent-color);
+  color: white;
 }
