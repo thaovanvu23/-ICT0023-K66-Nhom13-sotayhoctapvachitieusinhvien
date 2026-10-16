@@ -1,37 +1,117 @@
-<!-- Hoàng Làm -->
 <!doctype html>
+<!--
+Phân công
+1. Hoàng: Phần giao diện HTML, 
+2. Vân: Toàn bộ chitieu.js,
+3. Thông: Toàn bộ hoctap.js,
+4. Nga Toàn bộ style.css
+-->
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang Chủ</title>
-    <link rel="stylesheet" href="trangchu.css" />
+    <title>Quản Lý Cá Nhân</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="trangChuContainer">
-      <header class="trangChuHeader">
-        <p class="trangChuTieuDe">Sổ tay sinh viên</p>
-        <h1>Trang chủ</h1>
+    <div class="khungChung">
+      <header class="tieuDeApp">
+        <h1>Quản Lý Chi Tiêu và Học Tập</h1>
       </header>
 
-      <nav class="menuTrangChu" aria-label="Menu chính">
-        <a href="tongquan.html" class="menuItem">
-          <span class="icon">📊</span>
-          <span class="text">Tổng Quan</span>
-        </a>
-        <a href="chitieu.html" class="menuItem">
-          <span class="icon">💸</span>
-          <span class="text">Chi Tiêu</span>
-        </a>
-        <a href="hoctap.html" class="menuItem">
-          <span class="icon">📚</span>
-          <span class="text">Học Tập</span>
-        </a>
-        <a href="deadline.html" class="menuItem">
-          <span class="icon">⏰</span>
-          <span class="text">Deadline</span>
-        </a>
+      <nav class="thanhTab">
+        <button class="nutTab dangChon" data-tab="tongQuan">Tổng quan</button>
+        <button class="nutTab" data-tab="chiTieu">Chi tiêu</button>
+        <button class="nutTab" data-tab="hocTap">Học tập</button>
       </nav>
-    </main>
+
+      <main>
+        <section id="tongQuan" class="khungTab dangChon">
+          <div class="cacThe">
+            <div class="the">
+              <span class="theNhan">Tổng chi tiêu</span>
+              <span class="theGiaTri" id="tongChiTieu">0 ₫</span>
+            </div>
+            <div class="the">
+              <span class="theNhan">Tiến độ học tập</span>
+              <span class="theGiaTri" id="tienDoHocTapTongQuan">0/0</span>
+            </div>
+          </div>
+          <div class="khung">
+            <h2>Hoạt động gần đây</h2>
+            <ul class="danhSachGanDay" id="hoatDongGanDay">
+              <li>Chưa có hoạt động gần đây.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="chiTieu" class="khungTab">
+          <div class="khung">
+            <h2>Thêm khoản chi tiêu</h2>
+            <form id="formChiTieu" class="formNhapLieu">
+              <input
+                type="text"
+                name="name"
+                placeholder="Tên khoản chi"
+                required
+              />
+              <input
+                type="text"
+                name="amount"
+                placeholder="Số tiền (VNĐ)"
+                inputmode="decimal"
+                required
+              />
+              <select name="category">
+                <option value="Ăn uống">Ăn uống</option>
+                <option value="Di chuyển">Di chuyển</option>
+                <option value="Học tập">Học tập</option>
+                <option value="Giải trí">Giải trí</option>
+                <option value="Khác">Khác</option>
+              </select>
+              <input type="date" name="date" required />
+              <button type="submit" class="nutThem">+ Thêm</button>
+            </form>
+          </div>
+          <div class="khung">
+            <div class="khungTieuDe">
+              <h2>Danh sách chi tiêu</h2>
+              <span class="huyHieuTong"
+                >Tổng: <b id="tongTienChiTieu">0 ₫</b></span
+              >
+            </div>
+            <ul class="danhSach" id="danhSachChiTieu"></ul>
+          </div>
+        </section>
+
+        <section id="hocTap" class="khungTab">
+          <div class="khung">
+            <h2>Thêm bài tập / công việc</h2>
+            <form id="formHocTap" class="formNhapLieu">
+              <input
+                type="text"
+                name="subject"
+                placeholder="Môn học"
+                required
+              />
+              <input type="text" name="task" placeholder="Nội dung" required />
+              <input type="date" name="deadline" />
+              <button type="submit" class="nutThem">+ Thêm</button>
+            </form>
+          </div>
+          <div class="khung">
+            <div class="khungTieuDe">
+              <h2>Danh sách học tập</h2>
+              <span class="huyHieuTong" id="tienDoHocTap">0/0</span>
+            </div>
+            <ul class="danhSach" id="danhSachHocTap"></ul>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="tabs.js"></script>
+    <script src="chitieu.js"></script>
+    <script src="hoctap.js"></script>
   </body>
 </html>

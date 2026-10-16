@@ -1,0 +1,217 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  padding: 24px 16px;
+  color: #222;
+  background: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.khungChung {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.tieuDeApp {
+  margin-bottom: 20px;
+}
+
+.tieuDeApp h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.thanhTab {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #bbb;
+}
+
+.nutTab {
+  padding: 10px 14px;
+  border: 1px solid #bbb;
+  border-bottom: 0;
+  background: #fff;
+  color: #222;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.nutTab.dangChon {
+  background: #eee;
+}
+
+.khungTab {
+  display: none;
+}
+
+.khungTab.dangChon {
+  display: block;
+}
+
+.cacThe {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.the,
+.khung {
+  padding: 16px;
+  border: 1px solid #bbb;
+  background: #fff;
+}
+
+.the {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.theNhan,
+.theMoTa,
+.mucChiTiet {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.theGiaTri {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.khung {
+  margin-bottom: 16px;
+}
+
+.khung h2 {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.khungTieuDe {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.khungTieuDe h2 {
+  margin-bottom: 0;
+}
+
+.huyHieuTong {
+  font-size: 0.9rem;
+}
+
+.formNhapLieu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
+}
+
+.formNhapLieu input,
+.formNhapLieu select,
+.nutThem {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #999;
+  border-radius: 0;
+  background: #fff;
+  color: #222;
+  font: inherit;
+}
+
+.nutThem {
+  cursor: pointer;
+}
+
+.nutThem:hover,
+.nutTab:hover {
+  background: #eee;
+}
+
+.danhSach,
+.danhSachGanDay {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+}
+
+.muc {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.muc.hoanThanh {
+  color: #777;
+}
+
+.muc.hoanThanh .mucTen {
+  text-decoration: line-through;
+}
+
+.mucThongTin {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mucTen {
+  font-weight: 600;
+}
+
+.mucSoTien {
+  margin-right: 8px;
+  font-weight: 600;
+}
+
+.nutXoa {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #999;
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+}
+
+.trong {
+  padding: 12px 0;
+  color: #666;
+}
+
+.danhSachGanDay li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+@media (max-width: 560px) {
+  .thanhTab {
+    gap: 0;
+  }
+
+  .nutTab {
+    flex: 1;
+    padding: 10px 6px;
+  }
+
+  .formNhapLieu {
+    grid-template-columns: 1fr;
+  }
+}
