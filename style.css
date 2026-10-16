@@ -1,14 +1,27 @@
-/* --- 1. HIỆU ỨNG NỀN & BIẾN MÀU SẮC ĐỘNG --- */
+/* --- 1. CẤU HÌNH MÀU SẮC (CHẾ ĐỘ SÁNG MẶC ĐỊNH & TỐI) --- */
 :root {
-    --bg-gradient: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     --card-bg: rgba(255, 255, 255, 0.85);
     --card-border: rgba(255, 255, 255, 0.6);
-    --text-main: #1e293b;
-    --text-muted: #64748b;
-    --accent-color: #6366f1;
-    --accent-hover: #4f46e5;
-    --success-color: #10b981;
-    --shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    --text-main: #2d3748;
+    --text-muted: #718096;
+    --accent-color: #5a67d8;
+    --accent-hover: #434190;
+    --success-color: #38a169;
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* Chế độ tối (Dark Mode) khi được kích hoạt */
+body.dark-mode {
+    --bg-gradient: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+    --card-bg: rgba(45, 55, 72, 0.85);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --text-main: #f7fafc;
+    --text-muted: #a0aec0;
+    --accent-color: #7f9cf5;
+    --accent-hover: #667eea;
+    --success-color: #48bb78;
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 * {
@@ -16,10 +29,11 @@
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
 body {
-    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+    background: var(--bg-gradient);
     color: var(--text-main);
     line-height: 1.6;
     padding: 40px 20px;
@@ -27,23 +41,39 @@ body {
     background-attachment: fixed;
 }
 
-/* --- 2. KHUNG CHÍNH (CONTAINER) VỚI HIỆU ỨNG KÍNH MỜ & VIỀN SÁNG --- */
+/* --- 2. KHUNG CHÍNH (CONTAINER) --- */
 .khungChung {
     max-width: 950px;
     margin: 0 auto;
-    background: rgba(30, 41, 59, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     padding: 40px;
-    border-radius: 28px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    animation: fadeIn 0.8s ease-in-out;
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    position: relative;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Nút chuyển đổi Sáng/Tối */
+.nutChuyenCheDo {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.nutChuyenCheDo:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
 }
 
 .tieuDeApp {
@@ -51,83 +81,73 @@ body {
     margin-bottom: 35px;
 }
 
-/* Hiệu ứng chữ phát sáng lấp lánh */
 .tieuDeApp h1 {
-    color: #ffffff;
-    font-size: 34px;
-    font-weight: 900;
+    font-size: 32px;
+    font-weight: 800;
     letter-spacing: -0.5px;
-    background: linear-gradient(to right, #818cf8, #c084fc, #f472b6);
+    background: linear-gradient(to right, var(--accent-color), #d53f8c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
-    text-shadow: 0 0 30px rgba(129, 140, 248, 0.4);
 }
 
-/* --- 3. THANH ĐIỀU HƯỚNG TAB (HIỆU ỨNG HOVER NỔI BẬT) --- */
+/* --- 3. THANH ĐIỀU HƯỚNG TAB --- */
 .thanhTab {
     display: flex;
     justify-content: center;
     gap: 15px;
     margin-bottom: 35px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--card-border);
     padding-bottom: 20px;
 }
 
 .nutTab {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--card-border);
     padding: 12px 28px;
     font-size: 15px;
     font-weight: 600;
     border-radius: 14px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    color: #cbd5e1;
+    color: var(--text-muted);
+}
+
+body.dark-mode .nutTab {
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 .nutTab:hover {
-    background-color: rgba(99, 102, 241, 0.2);
-    color: #ffffff;
-    border-color: rgba(99, 102, 241, 0.5);
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+    background-color: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
 }
 
 .nutTab.dangChon {
-    background: linear-gradient(135deg, #6366f1, #a855f7);
+    background: var(--accent-color);
     color: white;
-    border-color: transparent;
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 6px 20px rgba(90, 103, 216, 0.3);
 }
 
-/* --- 4. CÁC KHUNG CHỨC NĂNG (HIỆU ỨNG PHÓNG TO KHI RÊ CHUỘT) --- */
+/* --- 4. CÁC KHUNG CHỨC NĂNG --- */
 .khung {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
     padding: 28px;
     margin-bottom: 28px;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.khung:hover {
-    border-color: rgba(129, 140, 248, 0.4);
-    transform: translateY(-4px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-    background: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
 }
 
 .khung h2 {
     font-size: 18px;
-    color: #f1f5f9;
+    color: var(--text-main);
     margin-bottom: 20px;
-    border-left: 4px solid #818cf8;
+    border-left: 4px solid var(--accent-color);
     padding-left: 12px;
     font-weight: 700;
 }
 
-/* --- 5. BIỂU MẪU NHẬP LIỆU (HIỆN ĐẠI & SÁNG BÓNG) --- */
+/* --- 5. BIỂU MẪU NHẬP LIỆU (FORM) --- */
 .formNhapLieu {
     display: flex;
     gap: 15px;
@@ -139,45 +159,42 @@ body {
     flex: 1;
     min-width: 180px;
     padding: 14px 18px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 14px;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
     font-size: 14px;
     outline: none;
-    transition: all 0.3s ease;
-    background-color: rgba(15, 23, 42, 0.8);
-    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: var(--text-main);
 }
 
-.formNhapLieu input::placeholder {
-    color: #64748b;
+body.dark-mode .formNhapLieu input,
+body.dark-mode .formNhapLieu select {
+    background-color: rgba(15, 23, 42, 0.6);
 }
 
 .formNhapLieu input:focus,
 .formNhapLieu select:focus {
-    border-color: #818cf8;
-    background-color: rgba(15, 23, 42, 1);
-    box-shadow: 0 0 0 5px rgba(129, 140, 248, 0.25);
-    transform: scale(1.01);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(90, 103, 216, 0.15);
 }
 
 .nutThem {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: linear-gradient(135deg, var(--success-color), #2f855a);
     color: white;
     border: none;
     padding: 14px 28px;
     font-weight: 700;
-    border-radius: 14px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+    box-shadow: 0 4px 15px rgba(56, 161, 105, 0.3);
 }
 
 .nutThem:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(56, 161, 105, 0.4);
 }
 
-/* --- 6. DANH SÁCH & BẢNG HIỂN THỊ (HIỆN THỊ MƯỢT MÀ) --- */
+/* --- 6. DANH SÁCH & BẢNG HIỂN THỊ --- */
 .khungTieuDe {
     display: flex;
     justify-content: space-between;
@@ -186,14 +203,12 @@ body {
 }
 
 .huyHieuTong {
-    background: rgba(129, 140, 248, 0.15);
-    color: #818cf8;
-    border: 1px solid rgba(129, 140, 248, 0.3);
+    background-color: rgba(90, 103, 216, 0.1);
+    color: var(--accent-color);
     padding: 6px 16px;
     border-radius: 20px;
     font-size: 13px;
     font-weight: 700;
-    box-shadow: 0 0 15px rgba(129, 140, 248, 0.2);
 }
 
 .danhSach {
@@ -201,23 +216,24 @@ body {
 }
 
 .danhSach li {
-    background: rgba(30, 41, 59, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--card-border);
     padding: 16px 20px;
-    border-radius: 14px;
+    border-radius: 12px;
     margin-bottom: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/* Hiệu ứng bay sang phải khi rê chuột vào từng mục */
+body.dark-mode .danhSach li {
+    background: rgba(30, 41, 59, 0.5);
+}
+
 .danhSach li:hover {
-    background: rgba(30, 41, 59, 0.95);
-    border-color: #818cf8;
-    transform: translateX(8px) scale(1.01);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent-color);
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 /* --- 7. TƯƠNG THÍCH ĐIỆN THOẠI (RESPONSIVE) --- */
