@@ -1,14 +1,15 @@
-/* --- 1. CẤU HÌNH GIAO DIỆN HIỆN ĐẠI & MỀM MẠI --- */
+/* --- 1. BIẾN MÀU SẮC & GIAO DIỆN HIỆN ĐẠI --- */
 :root {
-    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --card-bg: rgba(255, 255, 255, 0.95);
-    --primary: #4f46e5;
-    --primary-hover: #4338ca;
-    --text-main: #1f2937;
-    --text-muted: #6b7280;
-    --border-color: #e5e7eb;
-    --success: #10b981;
-    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    --bg-primary: #0f172a;
+    --bg-gradient: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e293b 100%);
+    --card-bg: rgba(30, 41, 59, 0.75);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent-color: #6366f1;
+    --accent-hover: #4f46e5;
+    --success-color: #10b981;
+    --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
 * {
@@ -24,29 +25,34 @@ body {
     line-height: 1.6;
     padding: 40px 20px;
     min-height: 100vh;
+    background-attachment: fixed;
 }
 
 /* --- 2. KHUNG CHÍNH (CONTAINER) --- */
 .khungChung {
-    max-width: 900px;
+    max-width: 950px;
     margin: 0 auto;
     background: var(--card-bg);
-    padding: 35px;
-    border-radius: 20px;
+    border: 1px solid var(--card-border);
+    padding: 40px;
+    border-radius: 24px;
     box-shadow: var(--shadow);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
 }
 
 .tieuDeApp {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 .tieuDeApp h1 {
-    color: var(--primary);
-    font-size: 30px;
+    color: #ffffff;
+    font-size: 32px;
     font-weight: 800;
     letter-spacing: -0.5px;
+    background: linear-gradient(to right, #818cf8, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     text-transform: uppercase;
 }
 
@@ -55,55 +61,57 @@ body {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #f3f4f6;
+    margin-bottom: 35px;
+    border-bottom: 1px solid var(--card-border);
     padding-bottom: 20px;
 }
 
 .nutTab {
-    background-color: #f3f4f6;
-    border: none;
-    padding: 12px 25px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--card-border);
+    padding: 12px 28px;
     font-size: 15px;
     font-weight: 600;
-    border-radius: 12px;
+    border-radius: 14px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     color: var(--text-muted);
 }
 
 .nutTab:hover {
-    background-color: #e0e7ff;
-    color: var(--primary);
+    background-color: rgba(99, 102, 241, 0.15);
+    color: #ffffff;
+    border-color: rgba(99, 102, 241, 0.4);
     transform: translateY(-2px);
 }
 
 .nutTab.dangChon {
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
     color: white;
-    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
 }
 
-/* --- 4. CÁC KHÔNG GIAN CHỨC NĂNG (CARDS) --- */
+/* --- 4. CÁC KHUNG CHỨC NĂNG (CARDS) --- */
 .khung {
-    background: #ffffff;
-    border: 1px solid var(--border-color);
-    border-radius: 14px;
-    padding: 24px;
-    margin-bottom: 24px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 28px;
+    transition: all 0.3s ease;
 }
 
 .khung:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
 }
 
 .khung h2 {
     font-size: 18px;
-    color: var(--text-main);
-    margin-bottom: 18px;
-    border-left: 4px solid var(--primary);
+    color: #f1f5f9;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--accent-color);
     padding-left: 12px;
     font-weight: 700;
 }
@@ -119,37 +127,42 @@ body {
 .formNhapLieu select {
     flex: 1;
     min-width: 180px;
-    padding: 12px 16px;
-    border: 2px solid var(--border-color);
-    border-radius: 10px;
+    padding: 14px 18px;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
     font-size: 14px;
     outline: none;
     transition: all 0.2s;
-    background-color: #f9fafb;
+    background-color: rgba(15, 23, 42, 0.8);
+    color: #ffffff;
+}
+
+.formNhapLieu input::placeholder {
+    color: #64748b;
 }
 
 .formNhapLieu input:focus,
 .formNhapLieu select:focus {
-    border-color: var(--primary);
-    background-color: #ffffff;
-    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+    border-color: var(--accent-color);
+    background-color: rgba(15, 23, 42, 1);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.25);
 }
 
 .nutThem {
     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     color: white;
     border: none;
-    padding: 12px 24px;
+    padding: 14px 28px;
     font-weight: 700;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.2s;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
 }
 
 .nutThem:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
 }
 
 /* --- 6. DANH SÁCH & BẢNG HIỂN THỊ --- */
@@ -157,13 +170,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .huyHieuTong {
-    background-color: #e0e7ff;
-    color: var(--primary);
-    padding: 6px 14px;
+    background-color: rgba(99, 102, 241, 0.15);
+    color: #818cf8;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    padding: 6px 16px;
     border-radius: 20px;
     font-size: 13px;
     font-weight: 700;
@@ -174,11 +188,11 @@ body {
 }
 
 .danhSach li {
-    background: #f9fafb;
-    border: 1px solid var(--border-color);
-    padding: 14px 18px;
-    border-radius: 10px;
-    margin-bottom: 10px;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid var(--card-border);
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -186,10 +200,10 @@ body {
 }
 
 .danhSach li:hover {
-    background: #ffffff;
-    border-color: var(--primary);
-    transform: translateX(5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background: rgba(30, 41, 59, 0.9);
+    border-color: var(--accent-color);
+    transform: translateX(6px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* --- 7. TƯƠNG THÍCH ĐIỆN THOẠI (RESPONSIVE) --- */
@@ -205,5 +219,8 @@ body {
     }
     body {
         padding: 15px;
+    }
+    .khungChung {
+        padding: 20px;
     }
 }
