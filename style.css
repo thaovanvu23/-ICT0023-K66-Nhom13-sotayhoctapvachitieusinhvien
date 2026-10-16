@@ -254,3 +254,39 @@ body.dark-mode .danhSach li {
         padding: 20px;
     }
 }
+/* --- GÓC GIẢI TRÍ --- */
+.thanhTabGiaiTri {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.nutGiaiTri {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--card-border);
+    padding: 8px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.nutGiaiTri.dangChon {
+    background: var(--accent-color);
+    color: white;
+}
+
+.nutChonDapAn {
+    background: rgba(90, 103, 216, 0.1);
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.nutChonDapAn:hover {
+    background: var(--accent-color);
+    color: white;
+}
