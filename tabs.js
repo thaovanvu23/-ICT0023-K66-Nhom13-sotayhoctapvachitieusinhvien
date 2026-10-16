@@ -8,6 +8,7 @@ document.querySelectorAll(".nutTab").forEach((btn) => {
       .forEach((p) => p.classList.remove("dangChon"));
     btn.classList.add("dangChon");
     document.getElementById(btn.dataset.tab).classList.add("dangChon");
+    if (btn.dataset.tab === "tongQuan") renderTongQuan();
   });
 });
 
@@ -30,6 +31,19 @@ nutChuyenCheDo.addEventListener("click", () => {
 // ===== Tab Tổng quan =====
 const SO_DU_BAN_DAU_KEY = "so_du_ban_dau";
 
+function vuaKichThuocSoDu() {
+  const soDu = document.getElementById("soDuHienTai");
+  soDu.style.fontSize = "30px";
+  if (!soDu.clientWidth) return;
+
+  const tiLe = Math.min(1, soDu.clientWidth / soDu.scrollWidth);
+  if (tiLe < 1) {
+    soDu.style.fontSize = Math.max(8, 30 * tiLe) + "px";
+  }
+}
+
+window.addEventListener("resize", vuaKichThuocSoDu);
+
 function renderTongQuan() {
   const ct = window.getChiTieuSummary
     ? window.getChiTieuSummary()
@@ -40,9 +54,11 @@ function renderTongQuan() {
 
   document.getElementById("tongChiTieu").textContent =
     ct.total.toLocaleString("vi-VN") + " ₫";
+  const conLai = Number(ct.remaining ?? Number(ct.income || 0) - ct.total);
   const soDuBanDau = Number(localStorage.getItem(SO_DU_BAN_DAU_KEY) || 0);
   document.getElementById("soDuHienTai").textContent =
-    (soDuBanDau - ct.total).toLocaleString("vi-VN") + " ₫";
+    (soDuBanDau + conLai).toLocaleString("vi-VN") + " ₫";
+  vuaKichThuocSoDu();
   document.getElementById("tienDoHocTapTongQuan").textContent =
     ht.done + "/" + ht.total;
 

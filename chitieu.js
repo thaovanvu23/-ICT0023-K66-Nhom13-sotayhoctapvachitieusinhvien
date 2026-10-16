@@ -94,14 +94,40 @@ function hienThiChiTieu() {
 
   var conLai = tongThu - tongChi;
   document.getElementById("tongTienThu").textContent = dinhDangTien(tongThu);
-  document.getElementById("tongTienChiTieu").textContent = dinhDangTien(tongChi);
-  // tab Tổng quan
-  document.getElementById("tongChiTieu").textContent = dinhDangTien(tongChi);
-  document.getElementById("tongThu").textContent = dinhDangTien(tongThu);
-  var oConLai = document.getElementById("conLai");
-  oConLai.textContent = dinhDangTien(conLai);
-  oConLai.style.color = conLai < 0 ? "#d6452f" : "";
+  document.getElementById("tongTienChiTieu").textContent =
+    dinhDangTien(tongChi);
+  if (typeof renderTongQuan === "function") renderTongQuan();
 }
+
+window.getChiTieuSummary = function () {
+  var chiTieu = danhSachChi.filter(function (khoan) {
+    return khoan.type !== "thu";
+  });
+  var tongChi = chiTieu.reduce(function (tong, khoan) {
+    return tong + Number(khoan.amount || 0);
+  }, 0);
+  var tongThu = danhSachChi.reduce(function (tong, khoan) {
+    return tong + (khoan.type === "thu" ? Number(khoan.amount || 0) : 0);
+  }, 0);
+  var byCategory = chiTieu.reduce(function (summary, khoan) {
+    var category = khoan.category || "Khác";
+    if (!summary[category]) summary[category] = { count: 0, total: 0 };
+    summary[category].count += 1;
+    summary[category].total += Number(khoan.amount || 0);
+    return summary;
+  }, {});
+  var recent = chiTieu.slice().sort(function (a, b) {
+    return b.date.localeCompare(a.date) || b.id - a.id;
+  });
+
+  return {
+    total: tongChi,
+    income: tongThu,
+    remaining: tongThu - tongChi,
+    recent: recent.slice(0, 5),
+    byCategory: byCategory,
+  };
+};
 
 formChiTieu.elements["type"].addEventListener("change", capNhatDanhMuc);
 
@@ -125,65 +151,6 @@ formChiTieu.addEventListener("submit", function (e) {
     date: du.get("date"),
   });
 
-<<<<<<< HEAD
-function deleteChiTieu(id) {
-  chiTieus = chiTieus.filter((c) => c.id !== id);
-  saveChiTieu();
-  renderChiTieu();
-  renderTongQuan();
-}
-
-function renderChiTieu() {
-  const list = document.getElementById("danhSachChiTieu");
-  const total = document.getElementById("tongTienChiTieu");
-  if (!list) return;
-
-  const sum = chiTieus.reduce((s, c) => s + c.amount, 0);
-  total.textContent = formatMoney(sum);
-
-  if (chiTieus.length === 0) {
-    list.innerHTML = '<p class="trong">Chưa có khoản chi tiêu nào.</p>';
-    return;
-  }
-
-  list.innerHTML = chiTieus
-    .map(
-      (c) => `
-    <li class="muc">
-      <div class="mucThongTin">
-        <span class="mucTen">${c.name}</span>
-        <span class="mucChiTiet">${c.category} · ${c.date}</span>
-      </div>
-      <div class="mucPhai">
-        <span class="mucSoTien">-${formatMoney(c.amount)}</span>
-        <button class="nutXoa" onclick="deleteChiTieu(${c.id})" title="Xóa">✕</button>
-      </div>
-    </li>`,
-    )
-    .join("");
-}
-
-window.getChiTieuSummary = function () {
-  const theoDanhMuc = chiTieus.reduce((summary, chiTieu) => {
-    const category = chiTieu.category || "Khác";
-    if (!summary[category]) summary[category] = { count: 0, total: 0 };
-    summary[category].count += 1;
-    summary[category].total += chiTieu.amount;
-    return summary;
-  }, {});
-
-  return {
-    total: chiTieus.reduce((s, c) => s + c.amount, 0),
-    recent: chiTieus.slice(0, 5),
-    byCategory: theoDanhMuc,
-  };
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("formChiTieu").addEventListener("submit", addChiTieu);
-  renderChiTieu();
-  renderTongQuan();
-=======
   var loai = du.get("type");
   luuDuLieu();
   hienThiChiTieu();
@@ -191,7 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
   formChiTieu.elements["type"].value = loai; // giữ loại vừa chọn
   capNhatDanhMuc();
   formChiTieu.elements["date"].value = homNay();
->>>>>>> 6b2703b26ace445957b458ac42ff064daec5c12a
 });
 
 function homNay() {

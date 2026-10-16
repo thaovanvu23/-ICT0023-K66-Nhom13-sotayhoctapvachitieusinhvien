@@ -2,13 +2,41 @@
   box-sizing: border-box;
 }
 
+:root {
+  color-scheme: light;
+  --page-bg: linear-gradient(135deg, #e8ecf5, #c9d3e6);
+  --surface: #fdfdff;
+  --surface-raised: #ffffff;
+  --surface-muted: #f0f0f2;
+  --text-main: #2d3748;
+  --text-muted: #718096;
+  --border-color: #dfe4ee;
+  --card-border: #e3e7f0;
+  --accent-color: #5b67d8;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode {
+  color-scheme: dark;
+  --page-bg: linear-gradient(135deg, #151c2a, #222e40);
+  --surface: #202b3b;
+  --surface-raised: #293649;
+  --surface-muted: #344258;
+  --text-main: #f1f5f9;
+  --text-muted: #b2bfd0;
+  --border-color: #46556b;
+  --card-border: #46556b;
+  --accent-color: #8995ff;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
 body {
   margin: 0;
   padding: 16px;
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 16px;
-  color: #2d3748;
-  background: linear-gradient(135deg, #e8ecf5, #c9d3e6);
+  color: var(--text-main);
+  background: var(--page-bg);
   min-height: 100vh;
 }
 
@@ -17,20 +45,40 @@ body {
   max-width: 640px;
   margin: 0 auto;
   padding: 24px;
-  background: #fdfdff;
+  position: relative;
+  background: var(--surface);
   border-radius: 24px;
+  box-shadow: var(--shadow);
 }
 
-/* Tiêu đề chữ chuyển màu tím sang hồng */
 .tieuDeApp h1 {
   margin: 0 0 20px;
+  padding-top: 38px;
   text-align: center;
   font-size: 1.9rem;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #5b67d8, #d43f8d);
+  background: linear-gradient(90deg, var(--accent-color), #d43f8d);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.nutChuyenCheDo {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  width: auto;
+  padding: 8px 12px;
+  border-radius: 20px;
+  background: var(--accent-color);
+  color: #fff;
+  font-size: 13px;
+  box-shadow: var(--shadow);
+}
+
+.nutChuyenCheDo:hover {
+  filter: brightness(1.08);
 }
 
 /* Ba nút tab */
@@ -47,13 +95,13 @@ button {
   padding: 14px;
   border: none;
   border-radius: 14px;
-  background: #f0f0f2;
-  color: #718096;
+  background: var(--surface-muted);
+  color: var(--text-muted);
   font-weight: 600;
 }
 
 button.dangChon {
-  background: #5b67d8;
+  background: var(--accent-color);
   color: #fff;
   box-shadow: 0 6px 16px rgba(91, 103, 216, 0.3);
 }
@@ -84,7 +132,7 @@ button.dangChon {
   border: 1px solid var(--card-border);
   border-left: 5px solid var(--the-accent);
   border-radius: 16px;
-  background: var(--card-bg);
+  background: var(--surface-raised);
   box-shadow: var(--shadow);
 }
 
@@ -98,6 +146,11 @@ button.dangChon {
 
 .theSoDu {
   --the-accent: #2878a5;
+}
+
+.theSoDu #soDuHienTai {
+  white-space: nowrap;
+  overflow-wrap: normal;
 }
 
 .theTongQuan .theNhan {
@@ -196,15 +249,16 @@ button.dangChon {
 .khung {
   margin-bottom: 16px;
   padding: 18px;
-  background: #fff;
+  border: 1px solid var(--border-color);
+  background: var(--surface-raised);
   border-radius: 18px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
 }
 
 .khung h2 {
   margin: 0 0 12px;
   padding-left: 12px;
-  border-left: 4px solid #5b67d8;
+  border-left: 4px solid var(--accent-color);
   font-size: 1.15rem;
 }
 
@@ -223,13 +277,12 @@ button.dangChon {
 
 .huyHieuTong {
   padding: 4px 12px;
-  background: #eef0fb;
+  background: var(--surface-muted);
   border-radius: 99px;
-  color: #5b67d8;
+  color: var(--accent-color);
   font-size: 0.9rem;
 }
 
-<<<<<<< HEAD
 .danhSachGanDay {
   display: flex;
   flex-direction: column;
@@ -242,7 +295,7 @@ button.dangChon {
   align-items: flex-start;
   gap: 20px;
   padding: 12px 0;
-  border-bottom: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .danhSachGanDay li:last-child {
@@ -260,8 +313,6 @@ button.dangChon {
   text-align: right;
 }
 
-.danhSach {
-=======
 /* Form nhập */
 .formNhapLieu {
   display: grid;
@@ -272,27 +323,27 @@ input,
 select {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #dfe4ee;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
-  background: #fff;
+  background: var(--surface-raised);
   font: inherit;
-  color: #2d3748;
+  color: var(--text-main);
 }
 
 input:focus,
 select:focus {
-  outline: 2px solid #5b67d8;
+  outline: 2px solid var(--accent-color);
   border-color: transparent;
 }
 
 .nutThem {
-  background: #5b67d8;
+  background: var(--accent-color);
   color: #fff;
   box-shadow: 0 6px 16px rgba(91, 103, 216, 0.3);
 }
 
 .nutThem:hover {
-  background: #4a56c4;
+  filter: brightness(1.08);
 }
 
 /* Danh sách */
@@ -300,18 +351,12 @@ select:focus {
 .danhSachGanDay {
   margin: 0;
   padding: 0;
->>>>>>> 6b2703b26ace445957b458ac42ff064daec5c12a
   list-style: none;
-}
-
-.danhSachGanDay {
-  list-style: disc;
-  padding-left: 20px;
 }
 
 .danhSach li {
   padding: 10px 0;
-  border-top: 1px solid #edf0f5;
+  border-top: 1px solid var(--border-color);
 }
 
 .danhSach li:first-child {
@@ -332,7 +377,7 @@ select:focus {
 }
 
 .mucChiTieu small {
-  color: #718096;
+  color: var(--text-muted);
 }
 
 .soTien {
@@ -355,7 +400,7 @@ select:focus {
 }
 
 .trong {
-  color: #718096;
+  color: var(--text-muted);
   text-align: center;
 }
 
@@ -369,12 +414,13 @@ select:focus {
 
 .nutChonDapAn {
   padding: 10px 16px;
-  background: #eef0fb;
-  color: #5b67d8;
+  background: var(--surface-muted);
+  color: var(--accent-color);
 }
 
 @media (max-width: 420px) {
   .cacThe,
+  .cacTheTongQuan,
   .thanhTabGiaiTri {
     grid-template-columns: 1fr;
   }
