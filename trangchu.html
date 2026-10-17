@@ -1,0 +1,130 @@
+<!doctype html>
+<!--
+Phân công
+1. Hoàng: Phần giao diện HTML,
+2. Vân: Toàn bộ hoctap.js,
+3. Thông: Toàn bộ chitieu.js,
+4. Nga Toàn bộ style.css
+-->
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang chủ - Quản Lý Cá Nhân</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="khungChung">
+      <header class="tieuDeApp">
+        <h1>Quản Lý Chi Tiêu và Học Tập</h1>
+        <button
+          type="button"
+          class="nutChuyenCheDo"
+          id="nutChuyenCheDo"
+          aria-pressed="false"
+        >
+          🌙 Chế độ tối
+        </button>
+      </header>
+
+      <nav class="thanhTab" aria-label="Menu chính">
+        <a class="nutTab dangChon" href="trangchu.html" aria-current="page"
+          >Trang chủ</a
+        >
+        <a class="nutTab" href="chitieu.html">Chi tiêu</a>
+        <a class="nutTab" href="hoctap.html">Học tập</a>
+        <a class="nutTab" href="giaitri.html">Giải trí</a>
+        <a class="nutTab" href="huongdan.html">Hướng dẫn</a>
+        <a class="nutTab" href="lienhe.html">Liên hệ</a>
+      </nav>
+
+      <main>
+        <section class="khung gioiThieu">
+          <h2 id="loiChao">Chào mừng bạn!</h2>
+          <p>
+            Đây là website giúp sinh viên theo dõi <b>thu – chi hằng ngày</b> và
+            quản lý <b>bài tập, deadline</b> ở cùng một nơi. Dữ liệu được lưu
+            ngay trên trình duyệt của bạn.
+          </p>
+          <div class="loiTat">
+            <a class="nutThem" href="chitieu.html">+ Ghi khoản thu / chi</a>
+            <a class="nutThem" href="hoctap.html">+ Thêm bài tập</a>
+          </div>
+        </section>
+
+        <div class="cacTheTongQuan">
+          <div class="theTongQuan theSoDu">
+            <span class="theNhan">Số dư hiện tại</span>
+            <span class="theGiaTri" id="soDuHienTai">0 ₫</span>
+            <span class="theGhiChu">Tổng thu nhập trừ tổng chi tiêu</span>
+          </div>
+          <div class="theTongQuan theTongChiTieu">
+            <span class="theNhan">Tổng chi tiêu</span>
+            <span class="theGiaTri" id="tongChiTieu">0 ₫</span>
+            <span class="theGhiChu">Tổng các khoản chi đã ghi nhận</span>
+          </div>
+          <div class="theTongQuan theTienDoHocTap">
+            <span class="theNhan">Tiến độ học tập</span>
+            <span class="theGiaTri" id="tienDoHocTapTongQuan">0/0</span>
+            <span class="theGhiChu">Bài tập và công việc hoàn thành</span>
+          </div>
+        </div>
+
+        <div class="khung">
+          <h2>Deadline gần nhất</h2>
+          <ul class="danhSachGanDay" id="deadlineGanNhat">
+            <li>Chưa có deadline sắp tới.</li>
+          </ul>
+        </div>
+        <div class="khung">
+          <h2>Hoạt động gần đây</h2>
+          <ul class="danhSachGanDay" id="hoatDongGanDay">
+            <li>Chưa có hoạt động gần đây.</li>
+          </ul>
+        </div>
+        <div class="khung">
+          <h2>Chi tiêu theo danh mục</h2>
+          <div class="bangTongQuanCuon">
+            <table class="bangTongQuan">
+              <thead>
+                <tr>
+                  <th scope="col">Danh mục</th>
+                  <th scope="col">Số khoản</th>
+                  <th scope="col">Tổng tiền</th>
+                </tr>
+              </thead>
+              <tbody id="chiTieuTheoDanhMuc">
+                <tr>
+                  <td colspan="3" class="bangTrong">
+                    Chưa có khoản chi tiêu nào.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+
+      <footer class="chanTrang">
+        <p>
+          © <span id="namHienTai">2026</span> Quản Lý Chi Tiêu và Học Tập – Bài
+          tập nhóm: Hoàng, Vân, Thông, Nga
+        </p>
+        <p>
+          <a href="trangchu.html">Trang chủ</a> ·
+          <a href="chitieu.html">Chi tiêu</a> ·
+          <a href="hoctap.html">Học tập</a> ·
+          <a href="giaitri.html">Giải trí</a> ·
+          <a href="huongdan.html">Hướng dẫn</a> ·
+          <a href="lienhe.html">Liên hệ</a>
+        </p>
+      </footer>
+    </div>
+
+    <script src="chung.js"></script>
+    <script src="chitieu.js"></script>
+    <script src="hoctap.js"></script>
+    <script src="tongquan.js"></script>
+    <script src="loiChao.js"></script>
+  </body>
+</html>
