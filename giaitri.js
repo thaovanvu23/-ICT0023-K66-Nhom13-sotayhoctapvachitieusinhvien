@@ -29,6 +29,113 @@ const CAU_HOI = [
     ],
     dung: 1,
   },
+  {
+    hoi: "Thuộc tính HTML nào tạo liên kết đến trang khác?",
+    dapAn: ["href", "src", "alt"],
+    dung: 0,
+  },
+  {
+    hoi: "CSS selector nào chọn phần tử có id=\"menu\"?",
+    dapAn: [".menu", "#menu", "menu()"],
+    dung: 1,
+  },
+  {
+    hoi: "Từ khóa nào khai báo biến có thể gán lại trong JavaScript?",
+    dapAn: ["const", "let", "static"],
+    dung: 1,
+  },
+  {
+    hoi: "Kiểu dữ liệu nào biểu diễn giá trị đúng hoặc sai trong JavaScript?",
+    dapAn: ["Boolean", "String", "Array"],
+    dung: 0,
+  },
+  {
+    hoi: "Phương thức nào thêm một phần tử vào cuối mảng JavaScript?",
+    dapAn: ["push()", "shift()", "pop()"],
+    dung: 0,
+  },
+  {
+    hoi: "Toán tử === trong JavaScript dùng để làm gì?",
+    dapAn: [
+      "So sánh bằng cả giá trị và kiểu dữ liệu",
+      "Gán giá trị cho biến",
+      "Nối hai chuỗi",
+    ],
+    dung: 0,
+  },
+  {
+    hoi: "Sự kiện nào thường xảy ra khi người dùng bấm vào nút?",
+    dapAn: ["submit", "click", "load"],
+    dung: 1,
+  },
+  {
+    hoi: "Phương thức nào tìm một phần tử HTML theo id?",
+    dapAn: [
+      "document.getElementById()",
+      "document.createElement()",
+      "document.append()",
+    ],
+    dung: 0,
+  },
+  {
+    hoi: "Thẻ HTML nào tạo tiêu đề lớn nhất theo cấu trúc trang?",
+    dapAn: ["<h6>", "<head>", "<h1>"],
+    dung: 2,
+  },
+  {
+    hoi: "Thuộc tính alt của hình ảnh giúp ích điều gì?",
+    dapAn: [
+      "Mô tả hình ảnh khi không tải được và hỗ trợ trình đọc màn hình",
+      "Tự động phóng to hình ảnh",
+      "Tạo đường viền cho hình ảnh",
+    ],
+    dung: 0,
+  },
+  {
+    hoi: "CSS Flexbox thường được dùng để làm gì?",
+    dapAn: [
+      "Sắp xếp và căn chỉnh phần tử trong bố cục",
+      "Lưu dữ liệu người dùng",
+      "Tạo cấu trúc cơ sở dữ liệu",
+    ],
+    dung: 0,
+  },
+  {
+    hoi: "JSON thường được dùng để làm gì?",
+    dapAn: [
+      "Định dạng trao đổi dữ liệu dạng văn bản",
+      "Tạo kiểu chữ cho trang web",
+      "Nén ảnh thành video",
+    ],
+    dung: 0,
+  },
+  {
+    hoi: "Lệnh console.log() thường dùng để làm gì?",
+    dapAn: [
+      "Hiển thị thông tin trong bảng điều khiển để kiểm tra",
+      "Xóa toàn bộ mã nguồn",
+      "Tạo một nút mới trên trang",
+    ],
+    dung: 0,
+  },
+  {
+    hoi: "Trong Git, commit dùng để làm gì?",
+    dapAn: [
+      "Lưu lại một mốc thay đổi trong lịch sử dự án",
+      "Xóa một nhánh trên Internet",
+      "Chạy trang web trên trình duyệt",
+    ],
+    dung: 0,
+  },
+  {
+    hoi: "HTTP là giao thức thường dùng cho việc gì?",
+    dapAn: [
+      "Trao đổi dữ liệu giữa trình duyệt và máy chủ web",
+      "Chỉnh sửa ảnh trên máy tính",
+      "Tạo hoạt ảnh trong CSS",
+    ],
+    dung: 0,
+  },
 ];
 
 let chiSoCauHoi = 0;
