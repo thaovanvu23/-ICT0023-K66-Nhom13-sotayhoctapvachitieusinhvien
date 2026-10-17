@@ -641,3 +641,22 @@ textarea:focus {
     grid-template-columns: 1fr;
   }
 }
+/* Tiêu đề Bước cua huong dan1, 2, 3, 4 */
+.khung h3 {
+  margin: 18px 0 6px;
+  font-size: 1rem;
+  color: var(--accent-color);
+}
+
+.khung h3:first-of-type {
+  margin-top: 4px;
+}
+
+.khung > p {
+  margin: 4px 0;
+  line-height: 1.6;
+}
+
+.danhSachMeo {
+  margin: 6px 0;
+}
