@@ -64,6 +64,60 @@
           </div>
           <ul class="danhSach" id="danhSachHocTap"></ul>
         </div>
+        <section class="khung" aria-labelledby="tieuDeDongHo">
+          <h2 id="tieuDeDongHo"> Chế độ tập trung học</h2>
+          <p class="moTa">
+            Chọn thời gian, bắt đầu tập trung và nghỉ ngơi khi đồng hồ kết thúc.
+          </p>
+          <div class="cauHinhDongHo">
+            <label for="thoiLuongDongHo">Thời gian tập trung</label>
+            <select id="thoiLuongDongHo">
+              <option value="15">15 phút</option>
+              <option value="25" selected>25 phút</option>
+              <option value="45">45 phút</option>
+              <option value="60">60 phút</option>
+              <option value="custom">Tùy chỉnh</option>
+            </select>
+            <label for="soPhutTuyChinh" id="nhanSoPhutTuyChinh" hidden>
+              Số phút (1–180)
+            </label>
+            <input
+              id="soPhutTuyChinh"
+              type="number"
+              min="1"
+              max="180"
+              step="1"
+              placeholder="Nhập số phút (tối đa 180)"
+              aria-label="Số phút tập trung tùy chỉnh"
+              hidden
+            />
+          </div>
+          <p class="dongHoThoiGian" id="thoiGianConLai" role="timer" aria-live="off">
+            25:00
+          </p>
+          <progress
+            class="thanhTienDoDongHo"
+            id="thanhTienDoDongHo"
+            max="1500"
+            value="0"
+            aria-label="Tiến độ thời gian tập trung"
+          ></progress>
+          <p class="trangThaiDongHo" id="trangThaiDongHo" aria-live="polite">
+            Sẵn sàng bắt đầu.
+          </p>
+          <div class="nutDieuKhienDongHo" aria-label="Điều khiển đồng hồ">
+            <button type="button" class="nutThem" id="batDauDongHo">
+              Bắt đầu
+            </button>
+            <button type="button" id="tamDungDongHo" disabled>
+              Tạm dừng
+            </button>
+            <button type="button" id="tiepTucDongHo" disabled>
+              Tiếp tục
+            </button>
+            <button type="button" id="datLaiDongHo" disabled>Đặt lại</button>
+          </div>
+        </section>
       </main>
 
       <footer class="chanTrang">
