@@ -9,6 +9,6 @@ formDangNhap.addEventListener("submit", (event) => {
     return;
   }
 
-  sessionStorage.setItem("tenNguoiDung", truongTenNguoiDung.value);
+  localStorage.setItem("tenNguoiDung", truongTenNguoiDung.value);
   window.location.assign("trangchu.html");
 });

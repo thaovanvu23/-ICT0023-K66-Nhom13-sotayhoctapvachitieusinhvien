@@ -1,4 +1,4 @@
-const tenNguoiDung = sessionStorage.getItem("tenNguoiDung");
+const tenNguoiDung = localStorage.getItem("tenNguoiDung");
 const loiChao = document.querySelector("#loiChao");
 
 if (tenNguoiDung) {
