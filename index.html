@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
 Phân công
-1. Hoàng: Phần giao diện HTML, 
+1. Hoàng: Phần giao diện HTML,
 2. Vân: Toàn bộ hoctap.js,
 3. Thông: Toàn bộ chitieu.js,
 4. Nga Toàn bộ style.css
@@ -10,7 +10,7 @@ Phân công
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản Lý Cá Nhân</title>
+    <title>Trang chủ - Quản Lý Cá Nhân</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -27,202 +27,101 @@ Phân công
         </button>
       </header>
 
-      <nav class="thanhTab">
-        <button class="nutTab dangChon" data-tab="tongQuan">Tổng quan</button>
-        <button class="nutTab" data-tab="chiTieu">Chi tiêu</button>
-        <button class="nutTab" data-tab="hocTap">Học tập</button>
+      <nav class="thanhTab" aria-label="Menu chính">
+        <a class="nutTab dangChon" href="index.html" aria-current="page">Trang chủ</a>
+        <a class="nutTab" href="chitieu.html">Chi tiêu</a>
+        <a class="nutTab" href="hoctap.html">Học tập</a>
+        <a class="nutTab" href="giaitri.html">Giải trí</a>
+        <a class="nutTab" href="huongdan.html">Hướng dẫn</a>
+        <a class="nutTab" href="lienhe.html">Liên hệ</a>
       </nav>
 
       <main>
-        <section id="tongQuan" class="khungTab dangChon">
-          <div class="cacTheTongQuan">
-            <div class="theTongQuan theSoDu">
-              <span class="theNhan">Số dư hiện tại</span>
-              <span class="theGiaTri" id="soDuHienTai">0 ₫</span>
-              <span class="theGhiChu">Tổng thu nhập trừ tổng chi tiêu</span>
-            </div>
-            <div class="theTongQuan theTongChiTieu">
-              <span class="theNhan">Tổng chi tiêu</span>
-              <span class="theGiaTri" id="tongChiTieu">0 ₫</span>
-              <span class="theGhiChu">Tổng các khoản chi đã ghi nhận</span>
-            </div>
-            <div class="theTongQuan theTienDoHocTap">
-              <span class="theNhan">Tiến độ học tập</span>
-              <span class="theGiaTri" id="tienDoHocTapTongQuan">0/0</span>
-              <span class="theGhiChu">Bài tập và công việc hoàn thành</span>
-            </div>
-          </div>
-          <div class="khung">
-            <h2>Deadline gần nhất</h2>
-            <ul class="danhSachGanDay" id="deadlineGanNhat">
-              <li>Chưa có deadline sắp tới.</li>
-            </ul>
-          </div>
-          <div class="khung">
-            <h2>Hoạt động gần đây</h2>
-            <ul class="danhSachGanDay" id="hoatDongGanDay">
-              <li>Chưa có hoạt động gần đây.</li>
-            </ul>
-          </div>
-          <div class="khung">
-            <h2>Chi tiêu theo danh mục</h2>
-            <div class="bangTongQuanCuon">
-              <table class="bangTongQuan">
-                <thead>
-                  <tr>
-                    <th scope="col">Danh mục</th>
-                    <th scope="col">Số khoản</th>
-                    <th scope="col">Tổng tiền</th>
-                  </tr>
-                </thead>
-                <tbody id="chiTieuTheoDanhMuc">
-                  <tr>
-                    <td colspan="3" class="bangTrong">
-                      Chưa có khoản chi tiêu nào.
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+        <section class="khung gioiThieu">
+          <h2>Chào mừng bạn!</h2>
+          <p>
+            Đây là website giúp sinh viên theo dõi <b>thu – chi hằng ngày</b>
+            và quản lý <b>bài tập, deadline</b> ở cùng một nơi. Dữ liệu được lưu
+            ngay trên trình duyệt của bạn, không cần đăng nhập.
+          </p>
+          <div class="loiTat">
+            <a class="nutThem" href="chitieu.html">+ Ghi khoản thu / chi</a>
+            <a class="nutThem" href="hoctap.html">+ Thêm bài tập</a>
           </div>
         </section>
 
-        <section id="chiTieu" class="khungTab">
-          <div class="khung">
-            <h2>Thêm khoản thu / chi</h2>
-            <form id="formChiTieu" class="formNhapLieu">
-              <select name="type">
-                <option value="chi">Chi tiêu</option>
-                <option value="thu">Thu nhập</option>
-              </select>
-              <input
-                type="text"
-                name="name"
-                placeholder="Nội dung (vd: Cơm trưa)"
-                required
-              />
-              <input
-                type="text"
-                name="amount"
-                placeholder="Số tiền (VD: 35.000 VNĐ)"
-                inputmode="numeric"
-                required
-              />
-              <select name="category">
-                <option value="Ăn uống">Ăn uống</option>
-                <option value="Di chuyển">Di chuyển</option>
-                <option value="Học tập">Học tập</option>
-                <option value="Giải trí">Giải trí</option>
-                <option value="Khác">Khác</option>
-              </select>
-              <input type="date" name="date" required />
-              <button type="submit" class="nutThem">+ Thêm</button>
-            </form>
+        <div class="cacTheTongQuan">
+          <div class="theTongQuan theSoDu">
+            <span class="theNhan">Số dư hiện tại</span>
+            <span class="theGiaTri" id="soDuHienTai">0 ₫</span>
+            <span class="theGhiChu">Tổng thu nhập trừ tổng chi tiêu</span>
           </div>
-          <div class="khung">
-            <div class="khungTieuDe">
-              <h2>Danh sách thu chi</h2>
-              <span class="huyHieuTong"
-                >Thu: <b id="tongTienThu">0 ₫</b> • Chi:
-                <b id="tongTienChiTieu">0 ₫</b></span
-              >
-            </div>
-            <ul class="danhSach" id="danhSachChiTieu"></ul>
+          <div class="theTongQuan theTongChiTieu">
+            <span class="theNhan">Tổng chi tiêu</span>
+            <span class="theGiaTri" id="tongChiTieu">0 ₫</span>
+            <span class="theGhiChu">Tổng các khoản chi đã ghi nhận</span>
           </div>
-        </section>
+          <div class="theTongQuan theTienDoHocTap">
+            <span class="theNhan">Tiến độ học tập</span>
+            <span class="theGiaTri" id="tienDoHocTapTongQuan">0/0</span>
+            <span class="theGhiChu">Bài tập và công việc hoàn thành</span>
+          </div>
+        </div>
 
-        <section id="hocTap" class="khungTab">
-          <div class="khung">
-            <h2>Thêm bài tập / công việc</h2>
-            <form id="formHocTap" class="formNhapLieu">
-              <input
-                type="text"
-                name="subject"
-                placeholder="Môn học"
-                required
-              />
-              <input type="text" name="task" placeholder="Nội dung" required />
-              <input type="date" name="deadline" />
-              <button type="submit" class="nutThem">+ Thêm</button>
-            </form>
+        <div class="khung">
+          <h2>Deadline gần nhất</h2>
+          <ul class="danhSachGanDay" id="deadlineGanNhat">
+            <li>Chưa có deadline sắp tới.</li>
+          </ul>
+        </div>
+        <div class="khung">
+          <h2>Hoạt động gần đây</h2>
+          <ul class="danhSachGanDay" id="hoatDongGanDay">
+            <li>Chưa có hoạt động gần đây.</li>
+          </ul>
+        </div>
+        <div class="khung">
+          <h2>Chi tiêu theo danh mục</h2>
+          <div class="bangTongQuanCuon">
+            <table class="bangTongQuan">
+              <thead>
+                <tr>
+                  <th scope="col">Danh mục</th>
+                  <th scope="col">Số khoản</th>
+                  <th scope="col">Tổng tiền</th>
+                </tr>
+              </thead>
+              <tbody id="chiTieuTheoDanhMuc">
+                <tr>
+                  <td colspan="3" class="bangTrong">
+                    Chưa có khoản chi tiêu nào.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div class="khung">
-            <div class="khungTieuDe">
-              <h2>Danh sách học tập</h2>
-              <span class="huyHieuTong" id="tienDoHocTap">0/0</span>
-            </div>
-            <ul class="danhSach" id="danhSachHocTap"></ul>
-          </div>
-        </section>
+        </div>
       </main>
 
-      <!-- PHẦN GIẢI TRÍ & THƯ GIÃN -->
-      <div class="khung giaiTriBox">
-        <h2>🎮 Góc Giải Trí & Thư Giãn Sinh Viên</h2>
-
-        <!-- Tab chọn trò chơi hoặc âm nhạc -->
-        <div class="thanhTabGiaiTri">
-          <button
-            class="nutGiaiTri dangChon"
-            onclick="chuyenTabGiaiTri('quiz')"
-          >
-            🧠 Đố Vui Lập Trình
-          </button>
-          <button class="nutGiaiTri" onclick="chuyenTabGiaiTri('lofi')">
-            🎧 Nhạc Lofi Chill
-          </button>
-        </div>
-
-        <!-- Nội dung Đố Vui -->
-        <div id="noiDungQuiz" class="noiDungGiaiTri">
-          <p id="cauHoiQuiz" style="font-weight: 600; margin-bottom: 12px">
-            Câu hỏi: Ngôn ngữ nào dùng để tạo cấu trúc trang web?
-          </p>
-          <div style="display: flex; gap: 10px; flex-wrap: wrap">
-            <button class="nutChonDapAn" onclick="chonDapAn(false)">
-              A. Python
-            </button>
-            <button class="nutChonDapAn" onclick="chonDapAn(true)">
-              B. HTML
-            </button>
-            <button class="nutChonDapAn" onclick="chonDapAn(false)">
-              C. C++
-            </button>
-          </div>
-          <p id="ketQuaQuiz" style="margin-top: 10px; font-weight: bold"></p>
-        </div>
-
-        <!-- Nội dung Nhạc Lofi -->
-        <div
-          id="noiDungLofi"
-          class="noiDungGiaiTri"
-          style="display: none; text-align: center"
-        >
-          <p style="margin-bottom: 10px">
-            Bật nhạc Lofi học tập không quảng cáo:
-          </p>
-          <iframe
-            style="border-radius: 12px"
-            src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWQRwMI0CKPn?utm_source=generator"
-            width="100%"
-            height="80"
-            frameborder="0"
-            allowfullscreen=""
-            allow="
-              autoplay;
-              clipboard-write;
-              encrypted-media;
-              fullscreen;
-              picture-in-picture;
-            "
-          ></iframe>
-        </div>
-      </div>
+      <footer class="chanTrang">
+        <p>
+          © <span id="namHienTai">2026</span> Quản Lý Chi Tiêu và Học Tập – Bài
+          tập nhóm: Hoàng, Vân, Thông, Nga
+        </p>
+        <p>
+          <a href="index.html">Trang chủ</a> ·
+          <a href="chitieu.html">Chi tiêu</a> ·
+          <a href="hoctap.html">Học tập</a> ·
+          <a href="giaitri.html">Giải trí</a> ·
+          <a href="huongdan.html">Hướng dẫn</a> ·
+          <a href="lienhe.html">Liên hệ</a>
+        </p>
+      </footer>
     </div>
 
-    <script src="tabs.js"></script>
+    <script src="chung.js"></script>
     <script src="chitieu.js"></script>
     <script src="hoctap.js"></script>
-    <script src="giaitri.js"></script>
+    <script src="tongquan.js"></script>
   </body>
 </html>

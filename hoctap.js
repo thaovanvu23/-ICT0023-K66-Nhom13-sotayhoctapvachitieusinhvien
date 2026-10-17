@@ -1,3 +1,6 @@
+// hoctap.js - phần Học tập (Vân)
+// Dùng được trên mọi trang: trang Học tập có form + danh sách,
+// trang chủ chỉ cần đọc dữ liệu để tổng hợp.
 const HOC_TAP_KEY = "hoc_tap_data";
 let danhSachCongViec = [];
 
@@ -12,25 +15,31 @@ function luuDanhSachHocTap() {
   localStorage.setItem(HOC_TAP_KEY, JSON.stringify(danhSachCongViec));
 }
 
-function ngayHomNayISO() {
-  const homNay = new Date();
-  const nam = homNay.getFullYear();
-  const thang = String(homNay.getMonth() + 1).padStart(2, "0");
-  const ngay = String(homNay.getDate()).padStart(2, "0");
-  return `${nam}-${thang}-${ngay}`;
-}
-
 function dinhDangNgayHocTap(ngay) {
   if (!ngay) return "Không có deadline";
   const [nam, thang, ngayTrongThang] = ngay.split("-");
   return `${ngayTrongThang}/${thang}/${nam}`;
 }
 
+window.getHocTapSummary = function () {
+  const viecChuaXong = danhSachCongViec.filter((congViec) => !congViec.done);
+  const coDeadline = viecChuaXong
+    .filter((congViec) => congViec.deadline)
+    .sort((a, b) => a.deadline.localeCompare(b.deadline));
+
+  return {
+    total: danhSachCongViec.length,
+    done: danhSachCongViec.filter((congViec) => congViec.done).length,
+    nearest: coDeadline[0] || null,
+  };
+};
+
 function renderDanhSachHocTap() {
   const danhSach = document.getElementById("danhSachHocTap");
+  if (!danhSach) return;
   const tongHop = window.getHocTapSummary();
-  const tienDo = `${tongHop.done}/${tongHop.total}`;
-  document.getElementById("tienDoHocTap").textContent = tienDo;
+  document.getElementById("tienDoHocTap").textContent =
+    `${tongHop.done}/${tongHop.total}`;
 
   if (danhSachCongViec.length === 0) {
     danhSach.innerHTML =
@@ -69,7 +78,6 @@ function renderDanhSachHocTap() {
         congViec.done = !congViec.done;
         luuDanhSachHocTap();
         renderDanhSachHocTap();
-        renderTongQuan();
       });
 
       const nutXoa = document.createElement("button");
@@ -82,7 +90,6 @@ function renderDanhSachHocTap() {
         );
         luuDanhSachHocTap();
         renderDanhSachHocTap();
-        renderTongQuan();
       });
 
       hanhDong.append(nutHoanThanh, nutXoa);
@@ -91,38 +98,27 @@ function renderDanhSachHocTap() {
     });
 }
 
-window.getHocTapSummary = function () {
-  const viecChuaXong = danhSachCongViec.filter((congViec) => !congViec.done);
-  const coDeadline = viecChuaXong
-    .filter((congViec) => congViec.deadline)
-    .sort((a, b) => a.deadline.localeCompare(b.deadline));
+const formHocTap = document.getElementById("formHocTap");
+if (formHocTap) {
+  formHocTap.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const subject = form.elements.subject.value.trim();
+    const task = form.elements.task.value.trim();
+    const deadline = form.elements.deadline.value;
+    if (!subject || !task) return;
 
-  return {
-    total: danhSachCongViec.length,
-    done: danhSachCongViec.filter((congViec) => congViec.done).length,
-    nearest: coDeadline[0] || null,
-  };
-};
-
-document.getElementById("formHocTap").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const subject = form.elements.subject.value.trim();
-  const task = form.elements.task.value.trim();
-  const deadline = form.elements.deadline.value;
-  if (!subject || !task) return;
-
-  danhSachCongViec.unshift({
-    id: Date.now(),
-    subject,
-    task,
-    deadline,
-    done: false,
+    danhSachCongViec.unshift({
+      id: Date.now(),
+      subject,
+      task,
+      deadline,
+      done: false,
+    });
+    luuDanhSachHocTap();
+    form.reset();
+    renderDanhSachHocTap();
   });
-  luuDanhSachHocTap();
-  form.reset();
-  renderDanhSachHocTap();
-  renderTongQuan();
-});
 
-renderDanhSachHocTap();
+  renderDanhSachHocTap();
+}

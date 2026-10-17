@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liên hệ &amp; Phản hồi - Quản Lý Cá Nhân</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="khungChung">
+      <header class="tieuDeApp">
+        <h1>Quản Lý Chi Tiêu và Học Tập</h1>
+        <button
+          type="button"
+          class="nutChuyenCheDo"
+          id="nutChuyenCheDo"
+          aria-pressed="false"
+        >
+          🌙 Chế độ tối
+        </button>
+      </header>
+
+      <nav class="thanhTab" aria-label="Menu chính">
+        <a class="nutTab" href="index.html">Trang chủ</a>
+        <a class="nutTab" href="chitieu.html">Chi tiêu</a>
+        <a class="nutTab" href="hoctap.html">Học tập</a>
+        <a class="nutTab" href="giaitri.html">Giải trí</a>
+        <a class="nutTab" href="huongdan.html">Hướng dẫn</a>
+        <a class="nutTab dangChon" href="lienhe.html" aria-current="page">Liên hệ</a>
+      </nav>
+
+      <main>
+        <div class="khung">
+          <h2>Gửi liên hệ / phản hồi</h2>
+          <form id="formLienHe" class="formNhapLieu" novalidate>
+            <label class="nhan">
+              Họ và tên
+              <input type="text" name="name" placeholder="Nguyễn Văn A" />
+              <small class="thongBaoLoi" id="loi-name"></small>
+            </label>
+            <label class="nhan">
+              Email
+              <input type="email" name="email" placeholder="ban@example.com" />
+              <small class="thongBaoLoi" id="loi-email"></small>
+            </label>
+            <label class="nhan">
+              Chủ đề
+              <select name="topic">
+                <option>Góp ý giao diện</option>
+                <option>Báo lỗi</option>
+                <option>Đề xuất tính năng</option>
+                <option>Khác</option>
+              </select>
+            </label>
+            <label class="nhan">
+              Mức độ hài lòng
+              <select name="rating">
+                <option value="5">5 - Rất hài lòng</option>
+                <option value="4">4 - Hài lòng</option>
+                <option value="3">3 - Bình thường</option>
+                <option value="2">2 - Chưa hài lòng</option>
+                <option value="1">1 - Rất tệ</option>
+              </select>
+            </label>
+            <label class="nhan">
+              Nội dung
+              <textarea
+                name="message"
+                rows="5"
+                placeholder="Bạn muốn nhắn gì với nhóm?"
+              ></textarea>
+              <small class="thongBaoLoi" id="loi-message"></small>
+            </label>
+            <button type="submit" class="nutThem">Gửi phản hồi</button>
+            <p class="thongBaoThanhCong" id="thongBaoLienHe" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <div class="khung">
+          <h2>Phản hồi gần đây (trên thiết bị này)</h2>
+          <ul class="danhSach danhSachPhanHoi" id="danhSachPhanHoi"></ul>
+        </div>
+
+        <div class="khung">
+          <h2>Thành viên nhóm</h2>
+          <div class="bangTongQuanCuon">
+            <table class="bangTongQuan">
+              <thead>
+                <tr>
+                  <th scope="col">Thành viên</th>
+                  <th scope="col">Phụ trách</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Hoàng</td><td>Giao diện HTML</td></tr>
+                <tr><td>Vân</td><td>hoctap.js</td></tr>
+                <tr><td>Thông</td><td>chitieu.js</td></tr>
+                <tr><td>Nga</td><td>style.css</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+
+      <footer class="chanTrang">
+        <p>
+          © <span id="namHienTai">2026</span> Quản Lý Chi Tiêu và Học Tập – Bài
+          tập nhóm: Hoàng, Vân, Thông, Nga
+        </p>
+        <p>
+          <a href="index.html">Trang chủ</a> ·
+          <a href="chitieu.html">Chi tiêu</a> ·
+          <a href="hoctap.html">Học tập</a> ·
+          <a href="giaitri.html">Giải trí</a> ·
+          <a href="huongdan.html">Hướng dẫn</a> ·
+          <a href="lienhe.html">Liên hệ</a>
+        </p>
+      </footer>
+    </div>
+
+    <script src="chung.js"></script>
+    <script src="lienhe.js"></script>
+  </body>
+</html>

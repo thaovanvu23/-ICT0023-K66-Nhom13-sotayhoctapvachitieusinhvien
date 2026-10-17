@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Học tập - Quản Lý Cá Nhân</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="khungChung">
+      <header class="tieuDeApp">
+        <h1>Quản Lý Chi Tiêu và Học Tập</h1>
+        <button
+          type="button"
+          class="nutChuyenCheDo"
+          id="nutChuyenCheDo"
+          aria-pressed="false"
+        >
+          🌙 Chế độ tối
+        </button>
+      </header>
+
+      <nav class="thanhTab" aria-label="Menu chính">
+        <a class="nutTab" href="index.html">Trang chủ</a>
+        <a class="nutTab" href="chitieu.html">Chi tiêu</a>
+        <a class="nutTab dangChon" href="hoctap.html" aria-current="page">Học tập</a>
+        <a class="nutTab" href="giaitri.html">Giải trí</a>
+        <a class="nutTab" href="huongdan.html">Hướng dẫn</a>
+        <a class="nutTab" href="lienhe.html">Liên hệ</a>
+      </nav>
+
+      <main>
+        <div class="khung">
+          <h2>Công cụ quản lý bài tập / công việc</h2>
+          <p class="moTa">
+            Thêm bài tập, đặt deadline, đánh dấu hoàn thành hoặc xóa. Danh sách
+            tự sắp xếp theo deadline gần nhất.
+          </p>
+          <form id="formHocTap" class="formNhapLieu">
+            <input
+              type="text"
+              name="subject"
+              placeholder="Môn học"
+              aria-label="Môn học"
+              required
+            />
+            <input
+              type="text"
+              name="task"
+              placeholder="Nội dung"
+              aria-label="Nội dung"
+              required
+            />
+            <input type="date" name="deadline" aria-label="Deadline" />
+            <button type="submit" class="nutThem">+ Thêm</button>
+          </form>
+        </div>
+        <div class="khung">
+          <div class="khungTieuDe">
+            <h2>Danh sách học tập</h2>
+            <span class="huyHieuTong" id="tienDoHocTap">0/0</span>
+          </div>
+          <ul class="danhSach" id="danhSachHocTap"></ul>
+        </div>
+      </main>
+
+      <footer class="chanTrang">
+        <p>
+          © <span id="namHienTai">2026</span> Quản Lý Chi Tiêu và Học Tập – Bài
+          tập nhóm: Hoàng, Vân, Thông, Nga
+        </p>
+        <p>
+          <a href="index.html">Trang chủ</a> ·
+          <a href="chitieu.html">Chi tiêu</a> ·
+          <a href="hoctap.html">Học tập</a> ·
+          <a href="giaitri.html">Giải trí</a> ·
+          <a href="huongdan.html">Hướng dẫn</a> ·
+          <a href="lienhe.html">Liên hệ</a>
+        </p>
+      </footer>
+    </div>
+
+    <script src="chung.js"></script>
+    <script src="hoctap.js"></script>
+  </body>
+</html>

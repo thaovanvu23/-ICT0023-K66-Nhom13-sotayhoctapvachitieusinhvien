@@ -1,4 +1,6 @@
 // chitieu.js - phần Thu / Chi (Thông)
+// Dùng được trên mọi trang: trang Chi tiêu có form + danh sách,
+// trang chủ chỉ cần đọc dữ liệu để tổng hợp.
 var KHOA_CHI_TIEU = "chiTieu";
 var danhSachChi = []; // mỗi khoản có type: "chi" hoặc "thu"
 
@@ -7,7 +9,7 @@ var DANH_MUC_THU = ["Gia đình gửi", "Làm thêm", "Học bổng", "Khác"];
 
 var formChiTieu = document.getElementById("formChiTieu");
 var khungDanhSach = document.getElementById("danhSachChiTieu");
-var oNhapSoTien = formChiTieu.elements["amount"];
+var oNhapSoTien = formChiTieu ? formChiTieu.elements["amount"] : null;
 
 function dinhDangTien(so) {
   return so.toLocaleString("vi-VN") + " ₫";
@@ -26,8 +28,16 @@ function luuDuLieu() {
   } catch (e) {}
 }
 
+function homNay() {
+  var d = new Date();
+  var thang = String(d.getMonth() + 1).padStart(2, "0");
+  var ngay = String(d.getDate()).padStart(2, "0");
+  return d.getFullYear() + "-" + thang + "-" + ngay;
+}
+
 // đổi danh mục theo loại đang chọn
 function capNhatDanhMuc() {
+  if (!formChiTieu) return;
   var loai = formChiTieu.elements["type"].value;
   var ds = loai === "thu" ? DANH_MUC_THU : DANH_MUC_CHI;
   var o = formChiTieu.elements["category"];
@@ -40,7 +50,40 @@ function capNhatDanhMuc() {
   });
 }
 
+// bảng chi tiêu theo danh mục (trang Chi tiêu)
+function hienThiBangDanhMuc() {
+  var tbody = document.getElementById("bangChiTheoDanhMuc");
+  if (!tbody) return;
+  var tongHop = window.getChiTieuSummary().byCategory;
+  var dong = Object.keys(tongHop).sort(function (a, b) {
+    return tongHop[b].total - tongHop[a].total;
+  });
+  tbody.innerHTML = "";
+  if (dong.length === 0) {
+    var tr = document.createElement("tr");
+    var td = document.createElement("td");
+    td.colSpan = 3;
+    td.className = "bangTrong";
+    td.textContent = "Chưa có khoản chi tiêu nào.";
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+    return;
+  }
+  dong.forEach(function (ten) {
+    var tr = document.createElement("tr");
+    [ten, tongHop[ten].count, dinhDangTien(tongHop[ten].total)].forEach(
+      function (giaTri) {
+        var td = document.createElement("td");
+        td.textContent = giaTri;
+        tr.appendChild(td);
+      },
+    );
+    tbody.appendChild(tr);
+  });
+}
+
 function hienThiChiTieu() {
+  if (!khungDanhSach) return;
   var tongThu = 0;
   var tongChi = 0;
   khungDanhSach.innerHTML = "";
@@ -93,11 +136,10 @@ function hienThiChiTieu() {
     khungDanhSach.appendChild(li);
   });
 
-  var conLai = tongThu - tongChi;
   document.getElementById("tongTienThu").textContent = dinhDangTien(tongThu);
   document.getElementById("tongTienChiTieu").textContent =
     dinhDangTien(tongChi);
-  if (typeof renderTongQuan === "function") renderTongQuan();
+  hienThiBangDanhMuc();
 }
 
 window.getChiTieuSummary = function () {
@@ -130,63 +172,59 @@ window.getChiTieuSummary = function () {
   };
 };
 
-formChiTieu.elements["type"].addEventListener("change", capNhatDanhMuc);
+docDuLieu();
 
-oNhapSoTien.addEventListener("input", function () {
-  var viTriConTro = oNhapSoTien.selectionStart;
-  var soChuSoTruocConTro = oNhapSoTien.value
-    .slice(0, viTriConTro)
-    .replace(/\D/g, "").length;
-  var chuoiSo = oNhapSoTien.value.replace(/\D/g, "");
-  var daDinhDang = chuoiSo.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+if (formChiTieu) {
+  formChiTieu.elements["type"].addEventListener("change", capNhatDanhMuc);
 
-  oNhapSoTien.value = daDinhDang;
-  var viTriMoi = 0;
-  var soChuSoDaGap = 0;
-  while (viTriMoi < daDinhDang.length && soChuSoDaGap < soChuSoTruocConTro) {
-    if (/\d/.test(daDinhDang[viTriMoi])) soChuSoDaGap += 1;
-    viTriMoi += 1;
-  }
-  oNhapSoTien.setSelectionRange(viTriMoi, viTriMoi);
-});
+  oNhapSoTien.addEventListener("input", function () {
+    var viTriConTro = oNhapSoTien.selectionStart;
+    var soChuSoTruocConTro = oNhapSoTien.value
+      .slice(0, viTriConTro)
+      .replace(/\D/g, "").length;
+    var chuoiSo = oNhapSoTien.value.replace(/\D/g, "");
+    var daDinhDang = chuoiSo.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
-formChiTieu.addEventListener("submit", function (e) {
-  e.preventDefault();
-  var du = new FormData(formChiTieu);
-
-  // bỏ dấu chấm, dấu phẩy: "35.000" -> 35000
-  var soTien = Number(String(du.get("amount")).replace(/\D/g, ""));
-  if (soTien <= 0) {
-    alert("Số tiền phải lớn hơn 0");
-    return;
-  }
-
-  danhSachChi.push({
-    id: Date.now(),
-    type: du.get("type"),
-    name: du.get("name").trim(),
-    amount: soTien,
-    category: du.get("category"),
-    date: du.get("date"),
+    oNhapSoTien.value = daDinhDang;
+    var viTriMoi = 0;
+    var soChuSoDaGap = 0;
+    while (viTriMoi < daDinhDang.length && soChuSoDaGap < soChuSoTruocConTro) {
+      if (/\d/.test(daDinhDang[viTriMoi])) soChuSoDaGap += 1;
+      viTriMoi += 1;
+    }
+    oNhapSoTien.setSelectionRange(viTriMoi, viTriMoi);
   });
 
-  var loai = du.get("type");
-  luuDuLieu();
-  hienThiChiTieu();
-  formChiTieu.reset();
-  formChiTieu.elements["type"].value = loai; // giữ loại vừa chọn
-  capNhatDanhMuc();
+  formChiTieu.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var du = new FormData(formChiTieu);
+
+    // bỏ dấu chấm, dấu phẩy: "35.000" -> 35000
+    var soTien = Number(String(du.get("amount")).replace(/\D/g, ""));
+    if (soTien <= 0) {
+      alert("Số tiền phải lớn hơn 0");
+      return;
+    }
+
+    danhSachChi.push({
+      id: Date.now(),
+      type: du.get("type"),
+      name: du.get("name").trim(),
+      amount: soTien,
+      category: du.get("category"),
+      date: du.get("date"),
+    });
+
+    var loai = du.get("type");
+    luuDuLieu();
+    hienThiChiTieu();
+    formChiTieu.reset();
+    formChiTieu.elements["type"].value = loai; // giữ loại vừa chọn
+    capNhatDanhMuc();
+    formChiTieu.elements["date"].value = homNay();
+  });
+
   formChiTieu.elements["date"].value = homNay();
-});
-
-function homNay() {
-  var d = new Date();
-  var thang = String(d.getMonth() + 1).padStart(2, "0");
-  var ngay = String(d.getDate()).padStart(2, "0");
-  return d.getFullYear() + "-" + thang + "-" + ngay;
+  capNhatDanhMuc();
+  hienThiChiTieu();
 }
-
-formChiTieu.elements["date"].value = homNay();
-docDuLieu();
-capNhatDanhMuc();
-hienThiChiTieu();

@@ -1,34 +1,17 @@
-document.querySelectorAll(".nutTab").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    document
-      .querySelectorAll(".nutTab")
-      .forEach((b) => b.classList.remove("dangChon"));
-    document
-      .querySelectorAll(".khungTab")
-      .forEach((p) => p.classList.remove("dangChon"));
-    btn.classList.add("dangChon");
-    document.getElementById(btn.dataset.tab).classList.add("dangChon");
-    if (btn.dataset.tab === "tongQuan") renderTongQuan();
+// tongquan.js - tổng hợp dữ liệu cho Trang chủ
+// (đọc từ chitieu.js và hoctap.js, nên phải nạp sau hai file đó)
+function escapeHtml(chuoi) {
+  return String(chuoi).replace(/[&<>"']/g, (kyTu) => {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    }[kyTu];
   });
-});
-
-const CHE_DO_TOI_KEY = "che_do_toi";
-const nutChuyenCheDo = document.getElementById("nutChuyenCheDo");
-
-function capNhatCheDoToi(cheDoToi) {
-  document.body.classList.toggle("dark-mode", cheDoToi);
-  nutChuyenCheDo.setAttribute("aria-pressed", String(cheDoToi));
-  nutChuyenCheDo.textContent = cheDoToi ? "☀️ Chế độ sáng" : "🌙 Chế độ tối";
 }
 
-capNhatCheDoToi(localStorage.getItem(CHE_DO_TOI_KEY) === "true");
-nutChuyenCheDo.addEventListener("click", () => {
-  const cheDoToi = !document.body.classList.contains("dark-mode");
-  localStorage.setItem(CHE_DO_TOI_KEY, String(cheDoToi));
-  capNhatCheDoToi(cheDoToi);
-});
-
-// ===== Tab Tổng quan =====
 function vuaKichThuocSoDu() {
   const soDu = document.getElementById("soDuHienTai");
   soDu.style.fontSize = "30px";
@@ -43,18 +26,13 @@ function vuaKichThuocSoDu() {
 window.addEventListener("resize", vuaKichThuocSoDu);
 
 function renderTongQuan() {
-  const ct = window.getChiTieuSummary
-    ? window.getChiTieuSummary()
-    : { total: 0, recent: [] };
-  const ht = window.getHocTapSummary
-    ? window.getHocTapSummary()
-    : { total: 0, done: 0 };
+  const ct = window.getChiTieuSummary();
+  const ht = window.getHocTapSummary();
 
   document.getElementById("tongChiTieu").textContent =
     ct.total.toLocaleString("vi-VN") + " ₫";
-  const conLai = Number(ct.remaining ?? Number(ct.income || 0) - ct.total);
   document.getElementById("soDuHienTai").textContent =
-    conLai.toLocaleString("vi-VN") + " ₫";
+    ct.remaining.toLocaleString("vi-VN") + " ₫";
   vuaKichThuocSoDu();
   document.getElementById("tienDoHocTapTongQuan").textContent =
     ht.done + "/" + ht.total;
@@ -104,7 +82,7 @@ function renderTongQuan() {
     ? ct.recent
         .map(
           (c) =>
-            `<li><span>${c.name}</span><b>${c.amount.toLocaleString("vi-VN")} ₫</b></li>`,
+            `<li><span>${escapeHtml(c.name)}</span><b>${c.amount.toLocaleString("vi-VN")} ₫</b></li>`,
         )
         .join("")
     : "<li>Chưa có hoạt động gần đây.</li>";
@@ -117,7 +95,7 @@ function renderTongQuan() {
         .map(
           ([category, summary]) => `
             <tr>
-              <td>${category}</td>
+              <td>${escapeHtml(category)}</td>
               <td>${summary.count}</td>
               <td>${summary.total.toLocaleString("vi-VN")} ₫</td>
             </tr>`,
@@ -125,3 +103,5 @@ function renderTongQuan() {
         .join("")
     : '<tr><td colspan="3" class="bangTrong">Chưa có khoản chi tiêu nào.</td></tr>';
 }
+
+renderTongQuan();

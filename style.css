@@ -42,7 +42,7 @@ body {
 
 /* Khung trắng bo góc chứa toàn bộ trang */
 .khungChung {
-  max-width: 640px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 24px;
   position: relative;
@@ -106,13 +106,30 @@ button.dangChon {
   box-shadow: 0 6px 16px rgba(91, 103, 216, 0.3);
 }
 
-/* Chỉ tab đang chọn mới hiện */
-.khungTab {
-  display: none;
+/* Menu điều hướng giữa các trang (thẻ <a>) */
+a.nutTab {
+  display: block;
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
 }
 
-.khungTab.dangChon {
-  display: block;
+a.nutTab:hover {
+  filter: brightness(0.96);
+}
+
+a.nutTab.dangChon {
+  background: var(--accent-color);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(91, 103, 216, 0.3);
+}
+
+[hidden] {
+  display: none !important;
 }
 
 .cacTheTongQuan {
@@ -421,9 +438,205 @@ select:focus {
   color: var(--accent-color);
 }
 
+.nutChonDapAn.dapAnDung {
+  background: #2f9e6f;
+  color: #fff;
+}
+
+.nutChonDapAn.dapAnSai {
+  background: #d6452f;
+  color: #fff;
+}
+
+.cauHoi {
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+
+.luaChonQuiz {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ketQuaQuiz {
+  min-height: 1.4em;
+  margin: 10px 0;
+  font-weight: 700;
+}
+
+.moTa {
+  margin: 0 0 12px;
+  color: var(--text-muted);
+}
+
+/* Liên kết dạng nút (Trang chủ) */
+a.nutThem {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.loiTat {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.gioiThieu p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Học tập */
+.mucHocTap {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.mucThongTin {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow-wrap: anywhere;
+}
+
+.mucThongTin small {
+  color: var(--text-muted);
+}
+
+.hanhDongHocTap {
+  display: flex;
+  gap: 8px;
+}
+
+.nutTrangThaiHocTap {
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  border-radius: 8px;
+}
+
+.nutTrangThaiHocTap[aria-pressed="true"] {
+  background: #2f9e6f;
+  color: #fff;
+}
+
+.hoanThanh .mucThongTin {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+/* Hướng dẫn & hỏi đáp */
+.danhSachBuoc,
+.danhSachMeo {
+  margin: 0;
+  padding-left: 22px;
+  line-height: 1.7;
+}
+
+.hoiDap {
+  padding: 10px 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.hoiDap:first-of-type {
+  border-top: none;
+}
+
+.hoiDap summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.hoiDap p {
+  margin: 8px 0 0;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--accent-color);
+}
+
+/* Liên hệ & phản hồi */
+.nhan {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--surface-raised);
+  font: inherit;
+  color: var(--text-main);
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: 2px solid var(--accent-color);
+  border-color: transparent;
+}
+
+.coLoi {
+  border-color: #d6452f;
+}
+
+.thongBaoLoi {
+  min-height: 1em;
+  color: #d6452f;
+  font-weight: 400;
+}
+
+.thongBaoThanhCong {
+  margin: 0;
+  color: #2f9e6f;
+  font-weight: 700;
+}
+
+.danhSachPhanHoi li b,
+.danhSachPhanHoi li small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.danhSachPhanHoi li small {
+  color: var(--text-muted);
+}
+
+/* Chân trang dùng chung */
+.chanTrang {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.chanTrang p {
+  margin: 4px 0;
+}
+
+@media (max-width: 700px) {
+  .cacTheTongQuan {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 420px) {
-  .cacThe,
-  .cacTheTongQuan,
+  .khungChung {
+    padding: 16px;
+  }
+
   .thanhTabGiaiTri {
     grid-template-columns: 1fr;
   }

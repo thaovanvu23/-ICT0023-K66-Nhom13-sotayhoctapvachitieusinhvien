@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giải trí - Quản Lý Cá Nhân</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="khungChung">
+      <header class="tieuDeApp">
+        <h1>Quản Lý Chi Tiêu và Học Tập</h1>
+        <button
+          type="button"
+          class="nutChuyenCheDo"
+          id="nutChuyenCheDo"
+          aria-pressed="false"
+        >
+          🌙 Chế độ tối
+        </button>
+      </header>
+
+      <nav class="thanhTab" aria-label="Menu chính">
+        <a class="nutTab" href="index.html">Trang chủ</a>
+        <a class="nutTab" href="chitieu.html">Chi tiêu</a>
+        <a class="nutTab" href="hoctap.html">Học tập</a>
+        <a class="nutTab dangChon" href="giaitri.html" aria-current="page">Giải trí</a>
+        <a class="nutTab" href="huongdan.html">Hướng dẫn</a>
+        <a class="nutTab" href="lienhe.html">Liên hệ</a>
+      </nav>
+
+      <main>
+        <div class="khung giaiTriBox">
+          <h2>🎮 Góc Giải Trí &amp; Thư Giãn Sinh Viên</h2>
+
+          <div class="thanhTabGiaiTri">
+            <button type="button" class="nutGiaiTri dangChon" data-tab="quiz">
+              🧠 Đố Vui Lập Trình
+            </button>
+            <button type="button" class="nutGiaiTri" data-tab="lofi">
+              🎧 Nhạc Lofi Chill
+            </button>
+          </div>
+
+          <div id="noiDungQuiz" class="noiDungGiaiTri">
+            <p id="cauHoiQuiz" class="cauHoi"></p>
+            <div id="luaChonQuiz" class="luaChonQuiz"></div>
+            <p id="ketQuaQuiz" class="ketQuaQuiz" aria-live="polite"></p>
+            <button type="button" id="nutCauTiep" class="nutThem" hidden>
+              Câu tiếp theo →
+            </button>
+          </div>
+
+          <div id="noiDungLofi" class="noiDungGiaiTri" hidden>
+            <p class="moTa">Bật nhạc Lofi học tập không quảng cáo:</p>
+            <iframe
+              title="Playlist Lofi trên Spotify"
+              style="border-radius: 12px; border: 0"
+              src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWQRwMI0CKPn?utm_source=generator"
+              width="100%"
+              height="80"
+              allowfullscreen=""
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            ></iframe>
+          </div>
+        </div>
+      </main>
+
+      <footer class="chanTrang">
+        <p>
+          © <span id="namHienTai">2026</span> Quản Lý Chi Tiêu và Học Tập – Bài
+          tập nhóm: Hoàng, Vân, Thông, Nga
+        </p>
+        <p>
+          <a href="index.html">Trang chủ</a> ·
+          <a href="chitieu.html">Chi tiêu</a> ·
+          <a href="hoctap.html">Học tập</a> ·
+          <a href="giaitri.html">Giải trí</a> ·
+          <a href="huongdan.html">Hướng dẫn</a> ·
+          <a href="lienhe.html">Liên hệ</a>
+        </p>
+      </footer>
+    </div>
+
+    <script src="chung.js"></script>
+    <script src="giaitri.js"></script>
+  </body>
+</html>

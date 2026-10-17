@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hướng dẫn &amp; Hỏi đáp - Quản Lý Cá Nhân</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="khungChung">
+      <header class="tieuDeApp">
+        <h1>Quản Lý Chi Tiêu và Học Tập</h1>
+        <button
+          type="button"
+          class="nutChuyenCheDo"
+          id="nutChuyenCheDo"
+          aria-pressed="false"
+        >
+          🌙 Chế độ tối
+        </button>
+      </header>
+
+      <nav class="thanhTab" aria-label="Menu chính">
+        <a class="nutTab" href="index.html">Trang chủ</a>
+        <a class="nutTab" href="chitieu.html">Chi tiêu</a>
+        <a class="nutTab" href="hoctap.html">Học tập</a>
+        <a class="nutTab" href="giaitri.html">Giải trí</a>
+        <a class="nutTab dangChon" href="huongdan.html" aria-current="page">Hướng dẫn</a>
+        <a class="nutTab" href="lienhe.html">Liên hệ</a>
+      </nav>
+
+      <main>
+        <div class="khung">
+          <h2>Hướng dẫn sử dụng</h2>
+          <ol class="danhSachBuoc">
+            <li>
+              Vào trang <a href="chitieu.html">Chi tiêu</a>, chọn loại khoản
+              (chi tiêu hoặc thu nhập), nhập nội dung, số tiền, danh mục, ngày
+              rồi bấm <b>+ Thêm</b>.
+            </li>
+            <li>
+              Vào trang <a href="hoctap.html">Học tập</a>, nhập môn học, nội
+              dung và deadline rồi bấm <b>+ Thêm</b>. Bấm <b>Hoàn thành</b> khi
+              làm xong.
+            </li>
+            <li>
+              Quay lại <a href="index.html">Trang chủ</a> để xem số dư, tiến độ
+              học tập, deadline gần nhất và chi tiêu theo danh mục.
+            </li>
+            <li>
+              Cần thư giãn? Ghé <a href="giaitri.html">Giải trí</a> để chơi đố
+              vui hoặc nghe nhạc Lofi.
+            </li>
+          </ol>
+        </div>
+
+        <div class="khung">
+          <h2>Câu hỏi thường gặp</h2>
+          <details class="hoiDap">
+            <summary>Dữ liệu của tôi được lưu ở đâu?</summary>
+            <p>
+              Toàn bộ dữ liệu được lưu trong trình duyệt (localStorage) trên
+              thiết bị bạn đang dùng, không gửi lên máy chủ nào.
+            </p>
+          </details>
+          <details class="hoiDap">
+            <summary>Vì sao đổi sang máy khác thì mất dữ liệu?</summary>
+            <p>
+              Vì dữ liệu chỉ nằm trên trình duyệt của từng thiết bị. Xóa lịch
+              sử/dữ liệu trang web cũng sẽ làm mất dữ liệu đã lưu.
+            </p>
+          </details>
+          <details class="hoiDap">
+            <summary>Số dư được tính như thế nào?</summary>
+            <p>Số dư bằng tổng các khoản thu nhập trừ tổng các khoản chi tiêu.</p>
+          </details>
+          <details class="hoiDap">
+            <summary>Có thể sửa một khoản đã nhập không?</summary>
+            <p>
+              Hiện tại bạn xóa khoản đó rồi nhập lại. Tính năng chỉnh sửa có thể
+              được bổ sung sau.
+            </p>
+          </details>
+          <details class="hoiDap">
+            <summary>Làm sao bật chế độ tối?</summary>
+            <p>
+              Bấm nút “Chế độ tối” ở góc trên bên phải. Lựa chọn được nhớ cho
+              mọi trang.
+            </p>
+          </details>
+          <details class="hoiDap">
+            <summary>Tôi muốn góp ý hoặc báo lỗi thì sao?</summary>
+            <p>
+              Gửi phản hồi tại trang <a href="lienhe.html">Liên hệ</a>, nhóm sẽ
+              xem và cải thiện.
+            </p>
+          </details>
+        </div>
+      </main>
+
+      <footer class="chanTrang">
+        <p>
+          © <span id="namHienTai">2026</span> Quản Lý Chi Tiêu và Học Tập – Bài
+          tập nhóm: Hoàng, Vân, Thông, Nga
+        </p>
+        <p>
+          <a href="index.html">Trang chủ</a> ·
+          <a href="chitieu.html">Chi tiêu</a> ·
+          <a href="hoctap.html">Học tập</a> ·
+          <a href="giaitri.html">Giải trí</a> ·
+          <a href="huongdan.html">Hướng dẫn</a> ·
+          <a href="lienhe.html">Liên hệ</a>
+        </p>
+      </footer>
+    </div>
+
+    <script src="chung.js"></script>
+  </body>
+</html>
