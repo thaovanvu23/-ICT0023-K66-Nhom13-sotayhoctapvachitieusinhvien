@@ -58,6 +58,34 @@
             <button type="submit" class="nutThem">+ Thêm</button>
           </form>
         </div>
+        <section class="khung" aria-labelledby="tieuDeNhapCsvHocTap">
+          <h2 id="tieuDeNhapCsvHocTap">Nhập bài tập từ CSV (tùy chọn)</h2>
+          <p class="moTa">
+            Chọn tệp hoặc dán CSV theo đúng tên cột trong template. Tệp được
+            đọc ngay trong trình duyệt, không gửi lên máy chủ. Để trống deadline
+            nếu chưa có hạn; không dùng dấu phẩy hoặc xuống dòng trong một ô.
+          </p>
+          <label for="tepCsvHocTap">Chọn tệp CSV</label>
+          <input id="tepCsvHocTap" type="file" accept=".csv" />
+          <label for="csvHocTap">Hoặc dán nội dung CSV</label>
+          <textarea
+            id="csvHocTap"
+            rows="5"
+            placeholder="mon_hoc,noi_dung,deadline&#10;Toán,Ôn tập chương 1,2026-10-20"
+          ></textarea>
+          <div class="loiTat">
+            <button type="button" class="nutThem" id="nutNhapCsvHocTap">
+              Kiểm tra và nhập CSV
+            </button>
+            <a class="nutThem nutPhu" href="template-hoc-tap.csv" download>
+              Tải template học tập
+            </a>
+            <button type="button" id="nutDatLaiHocTap">
+              Đặt lại dữ liệu mẫu
+            </button>
+          </div>
+          <p id="thongBaoCsvHocTap" class="thongBaoDuLieu" role="status" aria-live="polite"></p>
+        </section>
         <div class="khung">
           <div class="khungTieuDe">
             <h2>Danh sách học tập</h2>

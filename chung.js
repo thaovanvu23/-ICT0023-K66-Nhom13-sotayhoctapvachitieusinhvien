@@ -27,3 +27,28 @@ nutChuyenCheDo.addEventListener("click", () => {
 
 const namChanTrang = document.getElementById("namHienTai");
 if (namChanTrang) namChanTrang.textContent = new Date().getFullYear();
+
+function parseCsvRows(text) {
+  const noiDung = text.replace(/^\uFEFF/, "").trim();
+  if (!noiDung) return [];
+  return noiDung
+    .split(/\r?\n/)
+    .filter((line) => line.trim())
+    .map((line) => line.split(",").map((value) => value.trim()));
+}
+
+function laNgayISOHopLe(value) {
+  const parts = value.split("-");
+  if (parts.length !== 3 || !/^\d{4}$/.test(parts[0])) return false;
+  const year = Number(parts[0]);
+  const month = Number(parts[1]);
+  const day = Number(parts[2]);
+  const date = new Date(year, month - 1, day);
+  return (
+    /^\d{2}$/.test(parts[1]) &&
+    /^\d{2}$/.test(parts[2]) &&
+    date.getFullYear() === year &&
+    date.getMonth() === month - 1 &&
+    date.getDate() === day
+  );
+}

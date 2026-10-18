@@ -339,6 +339,25 @@ a.nutTab.dangChon {
   gap: 10px;
 }
 
+.khung label {
+  display: block;
+  margin: 8px 0 4px;
+  font-weight: 600;
+}
+
+.thongBaoDuLieu {
+  min-height: 1.5em;
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.nutPhu {
+  background: var(--surface-muted);
+  color: var(--text-main);
+  box-shadow: none;
+}
+
 input,
 select {
   width: 100%;

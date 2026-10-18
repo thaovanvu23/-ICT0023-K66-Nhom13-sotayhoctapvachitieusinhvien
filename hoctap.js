@@ -12,13 +12,139 @@ try {
 }
 
 function luuDanhSachHocTap() {
-  localStorage.setItem(HOC_TAP_KEY, JSON.stringify(danhSachCongViec));
+  try {
+    localStorage.setItem(HOC_TAP_KEY, JSON.stringify(danhSachCongViec));
+    return true;
+  } catch (error) {
+    thongBaoCsvHocTap("Không thể lưu dữ liệu trên trình duyệt.", true);
+    return false;
+  }
 }
 
 function dinhDangNgayHocTap(ngay) {
   if (!ngay) return "Không có deadline";
   const [nam, thang, ngayTrongThang] = ngay.split("-");
   return `${ngayTrongThang}/${thang}/${nam}`;
+}
+
+function thongBaoCsvHocTap(noiDung, laLoi) {
+  const thongBao = document.getElementById("thongBaoCsvHocTap");
+  if (!thongBao) return;
+  thongBao.textContent = noiDung;
+  thongBao.style.color = laLoi ? "#d6452f" : "";
+}
+
+function docTepCsvHocTap(tep) {
+  const doc = new FileReader();
+  doc.onload = () => {
+    document.getElementById("csvHocTap").value = doc.result;
+    thongBaoCsvHocTap("Đã đọc tệp. Bấm nút nhập để tiếp tục.", false);
+  };
+  doc.onerror = () => {
+    thongBaoCsvHocTap("Không đọc được tệp CSV trên thiết bị.", true);
+  };
+  doc.readAsText(tep, "UTF-8");
+}
+
+function nhapCsvHocTap() {
+  const rows = parseCsvRows(document.getElementById("csvHocTap").value);
+  const cot = ["mon_hoc", "noi_dung", "deadline"];
+  if (rows.length === 0) {
+    thongBaoCsvHocTap("Tệp CSV rỗng. Hãy chọn tệp hoặc dán dữ liệu.", true);
+    return;
+  }
+  if (rows[0].join(",") !== cot.join(",")) {
+    thongBaoCsvHocTap(
+      `Tên cột không đúng. Cần đúng thứ tự: ${cot.join(", ")}`,
+      true,
+    );
+    return;
+  }
+  if (rows.length === 1) {
+    thongBaoCsvHocTap("CSV chưa có dòng dữ liệu nào.", true);
+    return;
+  }
+
+  const loi = [];
+  const viecMoi = [];
+  for (let i = 1; i < rows.length; i += 1) {
+    const row = rows[i];
+    const soDong = i + 1;
+    if (row.length !== cot.length) {
+      loi.push(`Dòng ${soDong}: thiếu hoặc thừa trường.`);
+      continue;
+    }
+    const [subject, task, deadline] = row;
+    if (!subject || !task) {
+      loi.push(`Dòng ${soDong}: thiếu môn học hoặc nội dung.`);
+      continue;
+    }
+    if (deadline && !laNgayISOHopLe(deadline)) {
+      loi.push(`Dòng ${soDong}: deadline không hợp lệ (YYYY-MM-DD).`);
+      continue;
+    }
+
+    const congViec = {
+      id: Date.now() + i,
+      subject,
+      task,
+      deadline,
+      done: false,
+    };
+    const biTrung = danhSachCongViec.concat(viecMoi).some((item) =>
+      item.subject.toLowerCase() === subject.toLowerCase() &&
+      item.task.toLowerCase() === task.toLowerCase() &&
+      item.deadline === deadline
+    );
+    if (biTrung) {
+      loi.push(`Dòng ${soDong}: bài tập này đã bị trùng.`);
+      continue;
+    }
+    viecMoi.push(congViec);
+  }
+
+  if (loi.length) {
+    thongBaoCsvHocTap(loi.join(" "), true);
+    return;
+  }
+  if (!viecMoi.length) {
+    thongBaoCsvHocTap("CSV chưa có bài tập hợp lệ để nhập.", true);
+    return;
+  }
+
+  const danhSachCu = danhSachCongViec;
+  danhSachCongViec = danhSachCongViec.concat(viecMoi);
+  if (!luuDanhSachHocTap()) {
+    danhSachCongViec = danhSachCu;
+    return;
+  }
+  renderDanhSachHocTap();
+  document.getElementById("csvHocTap").value = "";
+  document.getElementById("tepCsvHocTap").value = "";
+  thongBaoCsvHocTap(`Đã nhập ${viecMoi.length} bài tập / công việc.`, false);
+}
+
+function datLaiDuLieuMauHocTap() {
+  const ngay = new Date();
+  ngay.setDate(ngay.getDate() + 2);
+  const deadline =
+    ngay.getFullYear() +
+    "-" +
+    String(ngay.getMonth() + 1).padStart(2, "0") +
+    "-" +
+    String(ngay.getDate()).padStart(2, "0");
+  const mau = [
+    { id: Date.now(), subject: "Toán", task: "Ôn tập chương 1", deadline, done: false },
+    { id: Date.now() + 1, subject: "Lập trình", task: "Làm bài thực hành", deadline, done: true },
+  ];
+  const danhSachCu = danhSachCongViec;
+  danhSachCongViec = mau;
+  if (!luuDanhSachHocTap()) {
+    danhSachCongViec = danhSachCu;
+    return;
+  }
+  renderDanhSachHocTap();
+  thongBaoCsvHocTap("Đã đặt lại bằng 2 bài tập mẫu để kiểm thử.", false);
 }
 
 window.getHocTapSummary = function () {
@@ -108,19 +234,38 @@ if (formHocTap) {
     const deadline = form.elements.deadline.value;
     if (!subject || !task) return;
 
-    danhSachCongViec.unshift({
+    if (deadline && !laNgayISOHopLe(deadline)) {
+      thongBaoCsvHocTap("Vui lòng nhập deadline hợp lệ.", true);
+      return;
+    }
+    const congViec = {
       id: Date.now(),
       subject,
       task,
       deadline,
       done: false,
-    });
-    luuDanhSachHocTap();
+    };
+    danhSachCongViec.unshift(congViec);
+    if (!luuDanhSachHocTap()) {
+      danhSachCongViec.shift();
+      return;
+    }
     form.reset();
     renderDanhSachHocTap();
+    thongBaoCsvHocTap("Đã thêm bài tập / công việc.", false);
   });
 
   renderDanhSachHocTap();
+  const tepCsv = document.getElementById("tepCsvHocTap");
+  tepCsv.addEventListener("change", () => {
+    if (tepCsv.files && tepCsv.files[0]) docTepCsvHocTap(tepCsv.files[0]);
+  });
+  document
+    .getElementById("nutNhapCsvHocTap")
+    .addEventListener("click", nhapCsvHocTap);
+  document
+    .getElementById("nutDatLaiHocTap")
+    .addEventListener("click", datLaiDuLieuMauHocTap);
 }
 
 const luaChonThoiLuong = document.getElementById("thoiLuongDongHo");

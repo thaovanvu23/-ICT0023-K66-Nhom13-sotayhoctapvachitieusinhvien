@@ -67,6 +67,35 @@
           </form>
         </div>
 
+        <section class="khung" aria-labelledby="tieuDeNhapCsv">
+          <h2 id="tieuDeNhapCsv">Nhập nhiều khoản từ CSV (tùy chọn)</h2>
+          <p class="moTa">
+            Chọn tệp hoặc dán dữ liệu CSV. Tệp được đọc trực tiếp trong trình
+            duyệt, không tải lên máy chủ. Dùng đúng tên cột trong template;
+            không đặt dấu phẩy hoặc xuống dòng bên trong một ô.
+          </p>
+          <label for="tepCsvChiTieu">Chọn tệp CSV</label>
+          <input id="tepCsvChiTieu" type="file" accept=".csv" />
+          <label for="csvChiTieu">Hoặc dán nội dung CSV</label>
+          <textarea
+            id="csvChiTieu"
+            rows="5"
+            placeholder="loai,noi_dung,so_tien,danh_muc,ngay&#10;chi,Cà phê,25000,Ăn uống,2026-10-18"
+          ></textarea>
+          <div class="loiTat">
+            <button type="button" class="nutThem" id="nutNhapCsvChiTieu">
+              Kiểm tra và nhập CSV
+            </button>
+            <a class="nutThem nutPhu" href="template.csv" download>
+              Tải template.csv
+            </a>
+            <button type="button" id="nutDatLaiChiTieu">
+              Đặt lại dữ liệu mẫu
+            </button>
+          </div>
+          <p id="thongBaoCsvChiTieu" class="thongBaoDuLieu" role="status" aria-live="polite"></p>
+        </section>
+
         <div class="khung">
           <div class="khungTieuDe">
             <h2>Danh sách thu chi</h2>
