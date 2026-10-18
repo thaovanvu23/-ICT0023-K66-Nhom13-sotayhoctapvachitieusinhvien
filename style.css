@@ -352,6 +352,55 @@ a.nutTab.dangChon {
   line-height: 1.5;
 }
 
+.thongKeNganSach {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--surface-muted);
+}
+
+.thongKeNganSach p {
+  margin: 4px 0;
+}
+
+.canhBaoSapVuot {
+  color: #b76b00;
+  font-weight: 700;
+}
+
+.canhBaoVuot {
+  color: #d6452f;
+  font-weight: 700;
+}
+
+.tieuDeLichTuan {
+  margin-top: 18px;
+}
+
+.tieuDeLichTuan h3 {
+  margin: 0;
+}
+
+.mucLichTuan {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.mucLichTuan strong,
+.mucLichTuan small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.mucLichTuan small {
+  margin-top: 3px;
+  color: var(--text-muted);
+}
+
 .nutPhu {
   background: var(--surface-muted);
   color: var(--text-main);

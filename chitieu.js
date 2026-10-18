@@ -2,6 +2,7 @@
 // Dùng được trên mọi trang: trang Chi tiêu có form + danh sách,
 // trang chủ chỉ cần đọc dữ liệu để tổng hợp.
 var KHOA_CHI_TIEU = "chiTieu";
+var KHOA_NGAN_SACH = "nganSachThang";
 var danhSachChi = []; // mỗi khoản có type: "chi" hoặc "thu"
 
 var DANH_MUC_CHI = ["Ăn uống", "Di chuyển", "Học tập", "Giải trí", "Khác"];
@@ -36,6 +37,109 @@ function homNay() {
   var thang = String(d.getMonth() + 1).padStart(2, "0");
   var ngay = String(d.getDate()).padStart(2, "0");
   return d.getFullYear() + "-" + thang + "-" + ngay;
+}
+
+function thangHienTai() {
+  return homNay().slice(0, 7);
+}
+
+function hienThiNganSach() {
+  var oThang = document.getElementById("thangThongKe");
+  if (!oThang) return;
+
+  var thang = oThang.value;
+  var duChi = danhSachChi.filter(function (khoan) {
+    return khoan.type !== "thu" && khoan.date.slice(0, 7) === thang;
+  });
+  var tongChiThang = duChi.reduce(function (tong, khoan) {
+    return tong + Number(khoan.amount || 0);
+  }, 0);
+  document.getElementById("tongChiThang").textContent =
+    dinhDangTien(tongChiThang);
+
+  var oDuBao = document.getElementById("uocTinhThang");
+  var canhBao = document.getElementById("canhBaoNganSach");
+  var ngayChon = new Date(Number(thang.slice(0, 4)), Number(thang.slice(5, 7)) - 1, 1);
+  var homNayDate = new Date();
+  var ngayDauThangNay = new Date(
+    homNayDate.getFullYear(),
+    homNayDate.getMonth(),
+    1,
+  );
+  var soNgayTrongThang = new Date(
+    ngayChon.getFullYear(),
+    ngayChon.getMonth() + 1,
+    0,
+  ).getDate();
+  var soNgayDaQua = 0;
+  if (ngayChon < ngayDauThangNay) {
+    soNgayDaQua = soNgayTrongThang;
+  } else if (
+    ngayChon.getFullYear() === ngayDauThangNay.getFullYear() &&
+    ngayChon.getMonth() === ngayDauThangNay.getMonth()
+  ) {
+    soNgayDaQua = homNayDate.getDate();
+  }
+  oDuBao.textContent = soNgayDaQua
+    ? dinhDangTien(Math.round((tongChiThang / soNgayDaQua) * soNgayTrongThang))
+    : "Chưa có dữ liệu để ước tính";
+
+  try {
+    var nganSachTheoThang = JSON.parse(
+      localStorage.getItem(KHOA_NGAN_SACH) || "{}",
+    );
+    var nganSach = Number(nganSachTheoThang[thang] || 0);
+    document.getElementById("nganSachThang").value =
+      nganSach > 0 ? nganSach : "";
+    if (!nganSach) {
+      canhBao.textContent = "Nhập ngân sách tháng để bật cảnh báo.";
+      canhBao.className = "thongBaoDuLieu";
+    } else if (tongChiThang > nganSach) {
+      canhBao.textContent =
+        "Đã vượt ngân sách " + dinhDangTien(tongChiThang - nganSach) + ".";
+      canhBao.className = "thongBaoDuLieu canhBaoVuot";
+    } else if (tongChiThang === nganSach) {
+      canhBao.textContent = "Bạn đã dùng hết ngân sách tháng.";
+      canhBao.className = "thongBaoDuLieu canhBaoVuot";
+    } else if (tongChiThang >= nganSach * 0.8) {
+      canhBao.textContent =
+        "Đã dùng " +
+        Math.floor((tongChiThang / nganSach) * 100) +
+        "% ngân sách. Bạn sắp chạm hạn mức.";
+      canhBao.className = "thongBaoDuLieu canhBaoSapVuot";
+    } else {
+      canhBao.textContent =
+        "Còn lại " + dinhDangTien(nganSach - tongChiThang) + " ngân sách.";
+      canhBao.className = "thongBaoDuLieu";
+    }
+  } catch (error) {
+    canhBao.textContent = "Không đọc được ngân sách đã lưu.";
+    canhBao.className = "thongBaoDuLieu canhBaoVuot";
+  }
+}
+
+function luuNganSachThang() {
+  var thang = document.getElementById("thangThongKe").value;
+  var nganSach = Number(document.getElementById("nganSachThang").value);
+  var canhBao = document.getElementById("canhBaoNganSach");
+  if (!thang || !Number.isSafeInteger(nganSach) || nganSach <= 0) {
+    canhBao.textContent = "Nhập ngân sách là số nguyên lớn hơn 0.";
+    canhBao.className = "thongBaoDuLieu canhBaoVuot";
+    return;
+  }
+
+  try {
+    var nganSachTheoThang = JSON.parse(
+      localStorage.getItem(KHOA_NGAN_SACH) || "{}",
+    );
+    nganSachTheoThang[thang] = nganSach;
+    localStorage.setItem(KHOA_NGAN_SACH, JSON.stringify(nganSachTheoThang));
+  } catch (error) {
+    canhBao.textContent = "Không thể lưu ngân sách trong trình duyệt.";
+    canhBao.className = "thongBaoDuLieu canhBaoVuot";
+    return;
+  }
+  hienThiNganSach();
 }
 
 function thongBaoNhapChiTieu(noiDung, laLoi) {
@@ -311,6 +415,7 @@ function hienThiChiTieu() {
   document.getElementById("tongTienChiTieu").textContent =
     dinhDangTien(tongChi);
   hienThiBangDanhMuc();
+  hienThiNganSach();
 }
 
 window.getChiTieuSummary = function () {
@@ -407,8 +512,16 @@ if (formChiTieu) {
   });
 
   formChiTieu.elements["date"].value = homNay();
+  document.getElementById("thangThongKe").value = thangHienTai();
   capNhatDanhMuc();
   hienThiChiTieu();
+  document
+    .getElementById("thangThongKe")
+    .addEventListener("change", hienThiNganSach);
+  document
+    .getElementById("nutLuuNganSach")
+    .addEventListener("click", luuNganSachThang);
+  hienThiNganSach();
 
   var tepCsv = document.getElementById("tepCsvChiTieu");
   tepCsv.addEventListener("change", function () {

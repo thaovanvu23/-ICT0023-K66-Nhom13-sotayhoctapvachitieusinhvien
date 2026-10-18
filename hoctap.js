@@ -2,13 +2,23 @@
 // Dùng được trên mọi trang: trang Học tập có form + danh sách,
 // trang chủ chỉ cần đọc dữ liệu để tổng hợp.
 const HOC_TAP_KEY = "hoc_tap_data";
+const LICH_TUAN_KEY = "lich_tuan_data";
 let danhSachCongViec = [];
+let danhSachLichTuan = [];
 
 try {
   const duLieuHocTap = JSON.parse(localStorage.getItem(HOC_TAP_KEY) || "[]");
   if (Array.isArray(duLieuHocTap)) danhSachCongViec = duLieuHocTap;
 } catch {
   danhSachCongViec = [];
+}
+
+try {
+  const duLieuLichTuan = JSON.parse(localStorage.getItem(LICH_TUAN_KEY) || "[]");
+  if (Array.isArray(duLieuLichTuan)) danhSachLichTuan = duLieuLichTuan;
+} catch {
+  danhSachLichTuan = [];
+  thongBaoLichTuan("Không thể đọc lịch đã lưu trong trình duyệt.", true);
 }
 
 function luuDanhSachHocTap() {
@@ -25,6 +35,125 @@ function dinhDangNgayHocTap(ngay) {
   if (!ngay) return "Không có deadline";
   const [nam, thang, ngayTrongThang] = ngay.split("-");
   return `${ngayTrongThang}/${thang}/${nam}`;
+}
+
+function thongBaoLichTuan(noiDung, laLoi) {
+  const thongBao = document.getElementById("thongBaoLichTuan");
+  if (!thongBao) return;
+  thongBao.textContent = noiDung;
+  thongBao.className = laLoi
+    ? "thongBaoDuLieu canhBaoVuot"
+    : "thongBaoDuLieu";
+}
+
+function luuLichTuan() {
+  try {
+    localStorage.setItem(LICH_TUAN_KEY, JSON.stringify(danhSachLichTuan));
+    return true;
+  } catch (error) {
+    thongBaoLichTuan("Không thể lưu lịch trong trình duyệt.", true);
+    return false;
+  }
+}
+
+function renderLichTuan() {
+  const danhSach = document.getElementById("danhSachLichTuan");
+  if (!danhSach) return;
+  const ngayTrongTuan = [
+    "Chủ nhật",
+    "Thứ 2",
+    "Thứ 3",
+    "Thứ 4",
+    "Thứ 5",
+    "Thứ 6",
+    "Thứ 7",
+  ];
+  danhSach.replaceChildren();
+  if (danhSachLichTuan.length === 0) {
+    const trong = document.createElement("li");
+    trong.className = "trong";
+    trong.textContent = "Chưa có hoạt động nào trong lịch tuần.";
+    danhSach.append(trong);
+    return;
+  }
+
+  danhSachLichTuan
+    .slice()
+    .sort((a, b) => {
+      const thuA = Number(a.day) === 0 ? 7 : Number(a.day);
+      const thuB = Number(b.day) === 0 ? 7 : Number(b.day);
+      return thuA - thuB || a.start.localeCompare(b.start);
+    })
+    .forEach((hoatDong) => {
+      const muc = document.createElement("li");
+      muc.className = "mucLichTuan";
+      const thongTin = document.createElement("div");
+      const ten = document.createElement("strong");
+      ten.textContent = hoatDong.activity;
+      const chiTiet = document.createElement("small");
+      chiTiet.textContent =
+        ngayTrongTuan[Number(hoatDong.day)] +
+        " • " +
+        hoatDong.start +
+        "–" +
+        hoatDong.end;
+      thongTin.append(ten, chiTiet);
+
+      const nutXoa = document.createElement("button");
+      nutXoa.type = "button";
+      nutXoa.className = "nutXoa";
+      nutXoa.textContent = "Xóa";
+      nutXoa.addEventListener("click", () => {
+        danhSachLichTuan = danhSachLichTuan.filter(
+          (mucHienTai) => mucHienTai.id !== hoatDong.id,
+        );
+        if (luuLichTuan()) renderLichTuan();
+      });
+      muc.append(thongTin, nutXoa);
+      danhSach.append(muc);
+    });
+}
+
+function themHoatDongVaoLich(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const activity = form.elements.activity.value.trim();
+  const day = Number(form.elements.day.value);
+  const start = form.elements.start.value;
+  const end = form.elements.end.value;
+  if (!activity || !start || !end || start >= end) {
+    thongBaoLichTuan("Nhập tên hoạt động và giờ kết thúc sau giờ bắt đầu.", true);
+    return;
+  }
+
+  const biTrung = danhSachLichTuan.some(
+    (muc) => Number(muc.day) === day && start < muc.end && end > muc.start,
+  );
+  if (biTrung) {
+    thongBaoLichTuan("Khung giờ này bị trùng với hoạt động khác trong ngày.", true);
+    return;
+  }
+
+  const hoatDong = { id: Date.now(), activity, day, start, end };
+  danhSachLichTuan.push(hoatDong);
+  if (!luuLichTuan()) {
+    danhSachLichTuan.pop();
+    return;
+  }
+  form.reset();
+  renderLichTuan();
+  thongBaoLichTuan("Đã thêm hoạt động vào lịch tuần.", false);
+}
+
+function datLaiLichTuan() {
+  danhSachLichTuan = [
+    { id: Date.now(), activity: "Học tiếng Anh", day: 1, start: "08:00", end: "09:00" },
+    { id: Date.now() + 1, activity: "Làm bài tập", day: 3, start: "14:00", end: "16:00" },
+  ];
+  if (luuLichTuan()) {
+    renderLichTuan();
+    thongBaoLichTuan("Đã đặt lại bằng 2 hoạt động mẫu.", false);
+  }
 }
 
 function thongBaoCsvHocTap(noiDung, laLoi) {
@@ -266,6 +395,15 @@ if (formHocTap) {
   document
     .getElementById("nutDatLaiHocTap")
     .addEventListener("click", datLaiDuLieuMauHocTap);
+}
+
+const formLichTuan = document.getElementById("formLichTuan");
+if (formLichTuan) {
+  formLichTuan.addEventListener("submit", themHoatDongVaoLich);
+  document
+    .getElementById("nutDatLaiLichTuan")
+    .addEventListener("click", datLaiLichTuan);
+  renderLichTuan();
 }
 
 const luaChonThoiLuong = document.getElementById("thoiLuongDongHo");

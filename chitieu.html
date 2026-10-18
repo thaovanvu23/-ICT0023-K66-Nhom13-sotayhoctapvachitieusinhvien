@@ -33,6 +33,30 @@
       </nav>
 
       <main>
+        <section class="khung" aria-labelledby="tieuDeNganSach">
+          <h2 id="tieuDeNganSach">Ngân sách và ước tính chi tiêu tháng</h2>
+          <div class="formNhapLieu">
+            <label for="thangThongKe">Chọn tháng</label>
+            <input id="thangThongKe" type="month" />
+            <label for="nganSachThang">Ngân sách tháng (VNĐ)</label>
+            <input
+              id="nganSachThang"
+              type="number"
+              min="1"
+              step="1"
+              placeholder="Ví dụ: 3000000"
+            />
+            <button type="button" class="nutThem" id="nutLuuNganSach">
+              Lưu ngân sách
+            </button>
+          </div>
+          <div class="thongKeNganSach" aria-live="polite">
+            <p>Đã chi trong tháng: <strong id="tongChiThang">0 ₫</strong></p>
+            <p>Ước tính cuối tháng: <strong id="uocTinhThang">—</strong></p>
+            <p id="canhBaoNganSach" class="thongBaoDuLieu" role="status"></p>
+          </div>
+        </section>
+
         <div class="khung">
           <h2>Thêm khoản thu / chi</h2>
           <form id="formChiTieu" class="formNhapLieu">
@@ -133,7 +157,7 @@
           <h2>Mẹo chi tiêu cho sinh viên</h2>
           <ul class="danhSachMeo">
             <li>Ghi lại mọi khoản chi ngay trong ngày để không bị quên.</li>
-            <li>Đặt hạn mức riêng cho ăn uống và giải trí mỗi tháng.</li>
+            <li>Đặt ngân sách tháng rồi theo dõi cảnh báo khi gần chạm hạn mức.</li>
             <li>Giữ lại ít nhất 10% khoản thu làm quỹ dự phòng.</li>
             <li>
               Cuối tuần xem lại bảng danh mục để biết mình chi nhiều nhất ở đâu.
