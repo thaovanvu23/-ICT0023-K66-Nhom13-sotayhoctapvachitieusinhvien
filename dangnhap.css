@@ -184,7 +184,7 @@ input {
   outline: 3px solid var(--orange);
   outline-offset: 3px;
 }
-
+/* GIAO DIỆN NÚT ĐĂNG NHẬP */
 .nutDangNhap {
   display: flex;
   min-height: 52px;
@@ -203,7 +203,7 @@ input {
     background 150ms ease,
     transform 150ms ease;
 }
-
+/* Tạo hiệu ứng hover cho nút đăng nhập */
 .nutDangNhap:hover {
   transform: translateY(-1px);
   background: var(--green-dark);
