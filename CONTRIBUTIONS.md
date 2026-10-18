@@ -43,6 +43,3 @@ Cả nhóm cùng thống nhất các khóa `localStorage` và hai hàm tổng h�
 
 Nếu có thông tin, nhóm có thể bổ sung số buổi họp, cách chia việc qua Git, Zalo hoặc Drive, liên kết kho mã nguồn và lịch sử commit.
 
-## 5. Ghi chú
-
-Phân công dựa trên ghi chú ở đầu `trangchu.html` và thông tin tại trang Liên hệ. Nhóm cần kiểm tra và cập nhật nội dung cho đúng với công việc thực tế trước khi nộp.
